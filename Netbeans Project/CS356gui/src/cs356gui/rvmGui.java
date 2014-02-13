@@ -23,12 +23,10 @@ public class rvmGui extends javax.swing.JFrame {
       jButtonRun = new javax.swing.JButton();
       jButtonBrowse = new javax.swing.JButton();
       fbText = new java.awt.TextField();
-      jLabelProcess = new javax.swing.JLabel();
       jLabelSamplingRate = new javax.swing.JLabel();
       jLabelNumDet = new javax.swing.JLabel();
       jLabelRaceLog = new javax.swing.JLabel();
       jLabelDetRaceStat = new javax.swing.JLabel();
-      textAreaProcess = new java.awt.TextArea();
       textAreaSamplingRate = new java.awt.TextArea();
       textAreaNumDet = new java.awt.TextArea();
       textAreaRaceLog = new java.awt.TextArea();
@@ -81,9 +79,6 @@ public class rvmGui extends javax.swing.JFrame {
          }
       });
 
-      jLabelProcess.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-      jLabelProcess.setText("Prosess of threads and outputs");
-
       jLabelSamplingRate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
       jLabelSamplingRate.setText("Effective Sampling Rate:");
 
@@ -107,35 +102,41 @@ public class rvmGui extends javax.swing.JFrame {
          .addGroup(layout.createSequentialGroup()
             .addGap(37, 37, 37)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createSequentialGroup()
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fbText, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                  .addGap(18, 18, 18)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-               .addGroup(layout.createSequentialGroup()
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabelProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(textAreaProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(59, 59, 59)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(textAreaSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jLabelSamplingRate)
-                     .addComponent(textAreaNumDet, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(textAreaRaceLog, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jLabelNumDet)
-                     .addComponent(jLabelRaceLog)
-                     .addComponent(jLabelDetRaceStat))))
+               .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addGroup(layout.createSequentialGroup()
+                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelNumDet)
+                        .addComponent(textAreaNumDet, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textAreaSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textAreaRaceLog, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelRaceLog))
+                     .addGap(446, 446, 446))
+                  .addGroup(layout.createSequentialGroup()
+                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                           .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                           .addComponent(fbText, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                           .addGap(9, 9, 9)
+                           .addComponent(jLabelSamplingRate)
+                           .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                 .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                 .addGap(18, 18, 18)
+                                 .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                 .addComponent(jLabelDetRaceStat)
+                                 .addGap(121, 121, 121)))))
+                     .addGap(18, 18, 18)
+                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                     .addGap(402, 402, 402)
+                     .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addContainerGap(38, Short.MAX_VALUE))
       );
       layout.setVerticalGroup(
@@ -153,30 +154,26 @@ public class rvmGui extends javax.swing.JFrame {
                .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(5, 5, 5)
+            .addGap(4, 4, 4)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jLabelProcess)
-               .addComponent(jLabelSamplingRate))
+               .addComponent(jLabelSamplingRate)
+               .addComponent(jLabelDetRaceStat))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addGroup(layout.createSequentialGroup()
-                  .addComponent(textAreaSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(21, 21, 21)
+                  .addComponent(textAreaSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(16, 16, 16)
                   .addComponent(jLabelNumDet)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(textAreaNumDet, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(22, 22, 22)
+                  .addComponent(textAreaNumDet, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(jLabelRaceLog)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(textAreaRaceLog, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(20, 20, 20)
-                  .addComponent(jLabelDetRaceStat)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-               .addComponent(textAreaProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(textAreaRaceLog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+               .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
             .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap())
       );
 
       pack();
@@ -246,14 +243,12 @@ public class rvmGui extends javax.swing.JFrame {
    private javax.swing.JFileChooser jFileChooser1;
    private javax.swing.JLabel jLabelDetRaceStat;
    private javax.swing.JLabel jLabelNumDet;
-   private javax.swing.JLabel jLabelProcess;
    private javax.swing.JLabel jLabelRaceLog;
    private javax.swing.JLabel jLabelSamplingRate;
    private java.awt.Label labelChooseFile;
    private java.awt.Label labelTitle;
    private java.awt.TextArea textAreaDetRaceStat;
    private java.awt.TextArea textAreaNumDet;
-   private java.awt.TextArea textAreaProcess;
    private java.awt.TextArea textAreaRaceLog;
    private java.awt.TextArea textAreaSamplingRate;
    // End of variables declaration//GEN-END:variables
