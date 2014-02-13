@@ -197,14 +197,19 @@ public class rvmGui extends javax.swing.JFrame {
          String[] currFileArray = currFile.split("\\.");
          String currFileName = currFileArray[0];
          // textAreaDetRaceStat.setText(currFileName + "\n" + currFile + "\n" + currDir);
-
+         
+         //appends the strings together to form one long command line
+         //that is going to be executed in the terminal
          String comm1 = "cd " + currDir;
          String comm2 = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm -X:vm:raceDetSamplingRate=1.0 -cp ../:./:./* ";
          String comm3 = comm1 + "; " + comm2 + currFileName;
-         //textAreaDetRaceStat.setText(comm3);
+         
+         //this is just a test line , comment it out later 
+         textAreaDetRaceStat.setText(comm3);
 
+         //code below is supposed to execute a command in the terminal during java runtime
+         /*
          String s = null;
-
          try {
 
             // run the Unix "ps -ef" command
@@ -229,7 +234,7 @@ public class rvmGui extends javax.swing.JFrame {
 
             //System.exit(0);
          } catch (Exception e) {
-         }
+         }*/
 
       } catch (Exception e) {
       }
