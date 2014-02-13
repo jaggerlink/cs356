@@ -199,8 +199,8 @@ public class rvmGui extends javax.swing.JFrame {
          // textAreaDetRaceStat.setText(currFileName + "\n" + currFile + "\n" + currDir);
 
          String comm1 = "cd " + currDir;
-         String comm2 = "/home/s/pacer/jikesrvm-3.1.0/";
-         String comm3 = comm1 + "; " + comm2;
+         String comm2 = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm -X:vm:raceDetSamplingRate=1.0 -cp ../:./:./* ";
+         String comm3 = comm1 + "; " + comm2 + currFileName;
          //textAreaDetRaceStat.setText(comm3);
 
          String s = null;
@@ -218,13 +218,13 @@ public class rvmGui extends javax.swing.JFrame {
             // read the output from the command
             System.out.println("Here is the standard output of the command:\n");
             while ((s = stdInput.readLine()) != null) {
-               textAreaDetRaceStat.setText(textAreaDetRaceStat.getText()+"\n"+s);
+               textAreaDetRaceStat.setText(textAreaDetRaceStat.getText() + "\n" + s);
             }
 
             // read any errors from the attempted command
             System.out.println("Here is the standard error of the command (if any):\n");
             while ((s = stdError.readLine()) != null) {
-               textAreaDetRaceStat.setText(textAreaDetRaceStat.getText()+"\n"+s);
+               textAreaDetRaceStat.setText(textAreaDetRaceStat.getText() + "\n" + s);
             }
 
             //System.exit(0);
