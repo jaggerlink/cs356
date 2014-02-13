@@ -3,7 +3,9 @@
  */
 package cs356gui;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import javax.swing.JFileChooser;
 
 public class rvmGui extends javax.swing.JFrame {
@@ -194,12 +196,43 @@ public class rvmGui extends javax.swing.JFrame {
          String currFile = jfc.getName(openedFile);
          String[] currFileArray = currFile.split("\\.");
          String currFileName = currFileArray[0];
-         textAreaDetRaceStat.setText(currFileName + "\n" + currFile + "\n" + currDir);
+         // textAreaDetRaceStat.setText(currFileName + "\n" + currFile + "\n" + currDir);
+
+         String comm1 = "cd " + currDir;
+         String comm2 = "/home/s/pacer/jikesrvm-3.1.0/";
+         String comm3 = comm1 + "; " + comm2;
+         //textAreaDetRaceStat.setText(comm3);
+
+         String s = null;
+
+         try {
+
+            // run the Unix "ps -ef" command
+            // using the Runtime exec method:
+            Process p = Runtime.getRuntime().exec(comm3);
+
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+
+            // read the output from the command
+            System.out.println("Here is the standard output of the command:\n");
+            while ((s = stdInput.readLine()) != null) {
+               textAreaDetRaceStat.setText(textAreaDetRaceStat.getText()+"\n"+s);
+            }
+
+            // read any errors from the attempted command
+            System.out.println("Here is the standard error of the command (if any):\n");
+            while ((s = stdError.readLine()) != null) {
+               textAreaDetRaceStat.setText(textAreaDetRaceStat.getText()+"\n"+s);
+            }
+
+            //System.exit(0);
+         } catch (Exception e) {
+         }
+
       } catch (Exception e) {
-
       }
-
-
    }//GEN-LAST:event_jButtonRunActionPerformed
 
    //initializing the fileBrowser  for later use
