@@ -1,0 +1,56 @@
+#
+#  This file is part of the Jikes RVM project (http://jikesrvm.org).
+#
+#  This file is licensed to You under the Eclipse Public License (EPL);
+#  You may not use this file except in compliance with the License. You
+#  may obtain a copy of the License at
+#
+#      http://www.opensource.org/licenses/eclipse-1.0.php
+#
+#  See the COPYRIGHT.txt file distributed with this work for information
+#  regarding copyright ownership.
+#
+
+## This file defines the default values for config properties
+config.runtime.compiler=base
+config.bootimage.compiler=base
+config.include.aos=false
+config.include.gcspy=false
+config.include.gcspy-stub=false
+config.include.gcspy-client=false
+config.include.perfctr=false
+config.assertions=normal
+config.default-heapsize.initial=20
+config.default-heapsize.maximum=100
+config.bootimage.compiler.args=
+config.stress-gc-interval=0
+config.alignment-checking=false
+
+# RaceDet: build-time options
+
+config.rd.field-metadata=false
+config.rd.sync-ops=false
+config.rd.barriers=false
+config.rd.sampling=false
+config.rd.lite-race=false
+config.rd.stats=false
+
+config.rd.static-init-happens-before=false
+
+config.rd.statics-only=false
+config.rd.empty-barriers=false
+config.rd.no-arrays=false
+config.rd.no-escape-analysis=false
+config.rd.pass-indirect-metadata=false
+config.rd.no-base=false
+config.rd.no-opt=false
+config.rd.no-inlining=false
+config.rd.rbe=false
+config.rd.no-check-hoisting=false
+config.rd.no-barrier-cas=false
+
+config.rd.track-times=false
+config.rd.track-objects=false
+config.rd.track-alloc-sites=false
+config.rd.direct-regular-field-metadata=false
+config.rd.no-epochs=false

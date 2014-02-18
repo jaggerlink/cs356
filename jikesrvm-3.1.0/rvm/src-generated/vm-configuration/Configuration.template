@@ -1,0 +1,151 @@
+/*
+ *  This file is part of the Jikes RVM project (http://jikesrvm.org).
+ *
+ *  This file is licensed to You under the Eclipse Public License (EPL);
+ *  You may not use this file except in compliance with the License. You
+ *  may obtain a copy of the License at
+ *
+ *      http://www.opensource.org/licenses/eclipse-1.0.php
+ *
+ *  See the COPYRIGHT.txt file distributed with this work for information
+ *  regarding copyright ownership.
+ */
+package org.jikesrvm;
+
+/**
+ * Flags that specify the configuration of our virtual machine.
+ *
+ * Note: Changing any <code>final</code> flags requires that the whole vm
+ *       be recompiled and rebuilt after their values are changed.
+ */
+public abstract class Configuration {
+
+  //TODO: Split target specific configuration into separate file
+  public static final @_RVM_ARCH_HELPER_@ archHelper = @_RVM_ARCH_HELPER_@.singleton;
+
+  public static final boolean BuildForPowerPC = @_RVM_FOR_POWERPC_@;
+  public static final boolean BuildForIA32 = !BuildForPowerPC;
+  public static final boolean BuildForSSE2 = BuildForIA32 && @_RVM_FOR_SSE2_@;
+  public static final boolean BuildForSSE2Full = BuildForSSE2 && @_RVM_FOR_SSE2_FULL_@;
+  public static final boolean BuildForHwFsqrt = @_RVM_FOR_HW_FSQRT_@ && (@_RVM_FOR_POWERPC_@ || VM.BuildForSSE2);
+
+  public static final boolean BuildFor32Addr = @_RVM_FOR_32_ADDR_@;
+  public static final boolean BuildFor64Addr = !BuildFor32Addr;
+
+  public static final boolean BuildForAix = @_RVM_FOR_AIX_@;
+  public static final boolean BuildForLinux = @_RVM_FOR_LINUX_@;
+  public static final boolean BuildForSolaris = @_RVM_FOR_SOLARIS_@; 
+  public static final boolean BuildForOsx = !BuildForAix && !BuildForLinux && !BuildForSolaris;
+
+  public static final boolean BuildForGnuClasspath = @_RVM_WITH_GNU_CLASSPATH_@;
+  public static final boolean BuildForHarmony = @_RVM_WITH_HARMONY_@;
+
+  public static final boolean LittleEndian = BuildForIA32;
+
+  /* ABI selection.  Exactly one of these variables will be true in each build. */
+  public static final boolean BuildForMachOABI = BuildForOsx;
+  public static final boolean BuildForPowerOpenABI = BuildForAix || (BuildForLinux && BuildForPowerPC && BuildFor64Addr);
+  public static final boolean BuildForSVR4ABI = !(BuildForPowerOpenABI || BuildForMachOABI);
+
+  /** Are we using Classpath's portable native sync feature? */
+  public static final boolean PortableNativeSync = @_PORTABLE_NATIVE_SYNC_@;
+
+  /**
+   * Can a dereference of a null pointer result in an access
+   * to 'low' memory addresses that must be explicitly guarded because the
+   * target OS doesn't allow us to read protect low memory?
+   */
+  public static final boolean ExplicitlyGuardLowMemory = BuildForAix;
+
+ /** Assertion checking.
+      <dl>
+      <dt>false</dt>  <dd> no assertion checking at runtime</dd>
+      <dt>true  </dt> <dd> execute assertion checks at runtime</dd>
+      <dl>
+
+      Note: code your assertion checks as
+      <pre>
+        if (VM.VerifyAssertions)
+          VM._assert(xxx);
+      </pre>
+  */
+  public static final boolean VerifyAssertions = @_RVM_WITH_ASSERTIONS_@;
+  public static final boolean ExtremeAssertions = @_RVM_WITH_EXTREME_ASSERTIONS_@;
+
+  /**
+   * If set, verify that Uninterruptible methods actually cannot be
+   * interrupted.
+   */
+  public static final boolean VerifyUnint = VerifyAssertions;
+
+  // If set, ignore the supression pragma and print all warning messages.
+  public static final boolean ParanoidVerifyUnint = false;
+
+  // Is this an adaptive build?
+  public static final boolean BuildForAdaptiveSystem = @_RVM_WITH_ADAPTIVE_SYSTEM_@;
+
+  // Is this an opt compiler build?
+  public static final boolean BuildForOptCompiler = @_RVM_WITH_OPT_COMPILER_@;
+
+   // build with Base boot image compiler
+   public static final boolean BuildWithBaseBootImageCompiler = @_RVM_WITH_BASE_BOOTIMAGE_COMPILER_@;
+
+  // Interface method dispatch strategy.
+  // We either use IMT's (Alpern, Cocchi, Fink, Grove, and Lieber OOPSLA 2001)
+  // or searched ITables. See also the research archive for the variants on these
+  // two schemes that were evaluated in the OOPSLA 2001 paper.
+  public static final boolean BuildForIMTInterfaceInvocation = true;
+  public static final boolean BuildForITableInterfaceInvocation = !BuildForIMTInterfaceInvocation;
+
+  /** Epilogue yieldpoints increase sampling accuracy for adaptive
+      recompilation.  In particular, they are key for large, leaf, loop-free
+      methods.  */
+  public static final boolean UseEpilogueYieldPoints = BuildForAdaptiveSystem;
+
+  /* NUmber of allocations between gc's during stress testing. Set to 0 to disable. */
+  public static final int StressGCAllocationInterval = @_RVM_STRESSGC_INTERVAL_@;
+  public static final boolean ForceFrequentGC = 0 != StressGCAllocationInterval;
+
+  public static final boolean BuildWithGCTrace = @_RVM_WITH_GCTRACE_@;
+  public static final boolean BuildWithGCSpy = @_RVM_WITH_GCSPY_@;
+  
+  public static final String RVM_VERSION_STRING = "@_RVM_VERSION_@";
+  public static final String RVM_CONFIGURATION = "@_RVM_CONFIGURATION_@";
+
+  /**
+   * Alignment checking (for IA32 only; for debugging purposes only).
+   * To enable, build with -Dconfig.alignment-checking=true.
+   * Important: You'll also need to build without SSE (-Dtarget.arch.sse2=none) and
+   * run Jikes with only one processor (-X:processors=1).
+   */
+  public static final boolean AlignmentChecking = @_RVM_WITH_ALIGNMENT_CHECKING_@;
+  
+  // RaceDet: build-time options
+  
+  public static final boolean raceDetFieldMetadata = @_RVM_WITH_RD_FIELD_METADATA_@;
+  public static final boolean raceDetSyncOps = @_RVM_WITH_RD_SYNC_OPS_@;
+  public static final boolean raceDetBarriers = @_RVM_WITH_RD_BARRIERS_@;
+  public static final boolean raceDetSampling = @_RVM_WITH_RD_SAMPLING_@;
+  public static final boolean raceDetLiteRace = @_RVM_WITH_RD_LITE_RACE_@;
+  public static final boolean raceDetStats = @_RVM_WITH_RD_STATS_@;
+  
+  public static final boolean rdStaticInitHappensBefore = @_RVM_WITH_RD_STATIC_INIT_HAPPENS_BEFORE_@;
+  
+  public static final boolean raceDetStaticsOnly = @_RVM_WITH_RD_STATICS_ONLY_@;
+  public static final boolean raceDetEmptyBarriers = @_RVM_WITH_RD_EMPTY_BARRIERS_@;
+  public static final boolean raceDetNoArrays = @_RVM_WITH_RD_NO_ARRAYS_@;
+  public static final boolean raceDetNoEscapeAnalysis = @_RVM_WITH_RD_NO_ESCAPE_ANALYSIS_@;
+  public static final boolean raceDetPassIndirectMetadata = @_RVM_WITH_RD_PASS_INDIRECT_METADATA_@;
+  public static final boolean raceDetNoBase = @_RVM_WITH_RD_NO_BASE_@;
+  public static final boolean raceDetNoOpt = @_RVM_WITH_RD_NO_OPT_@;
+  public static final boolean raceDetNoInlining = @_RVM_WITH_RD_NO_INLINING_@;
+  public static final boolean raceDetRBE = @_RVM_WITH_RD_RBE_@;
+  public static final boolean raceDetNoCheckHoisting = @_RVM_WITH_RD_NO_CHECK_HOISTING_@;
+  public static final boolean raceDetNoBarrierCAS = @_RVM_WITH_RD_NO_BARRIER_CAS_@;
+  
+  public static final boolean raceDetTrackTimes = @_RVM_WITH_RD_TRACK_TIMES_@;
+  public static final boolean raceDetTrackObjects = @_RVM_WITH_RD_TRACK_OBJECTS_@;
+  public static final boolean raceDetTrackAllocSites = @_RVM_WITH_RD_TRACK_ALLOC_SITES_@;
+  public static final boolean raceDetDirectRegularFieldMetadata = @_RVM_WITH_RD_DIRECT_REGULAR_FIELD_METADATA_@;
+  public static final boolean raceDetNoEpochs = @_RVM_WITH_RD_NO_EPOCHS_@;
+}
