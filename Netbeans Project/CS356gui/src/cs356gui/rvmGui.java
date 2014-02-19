@@ -231,7 +231,23 @@ public class rvmGui extends javax.swing.JFrame {
          
          
          
-         ProcessBuilder pb = new ProcessBuilder();
+         StringBuffer output = new StringBuffer();
+ 
+         Process p;
+         try {
+            p = Runtime.getRuntime().exec(comm3);
+            p.waitFor();
+            BufferedReader reader = 
+                               new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+                           String line = "";			
+            while ((line = reader.readLine())!= null) {
+               output.append(line + "\n");
+            }
+            textAreaDetRaceStat.setText(line);
+         } catch (Exception e) {
+            e.printStackTrace();
+         }
          
          
          //code below is supposed to execute a command in the terminal during java runtime
