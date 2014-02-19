@@ -222,9 +222,9 @@ public class rvmGui extends javax.swing.JFrame {
          //appends the strings together to form one long command line
          //that is going to be executed in the terminal
          String rvmPath = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm";
-         String comm1 = "cd " + currDir;
+         //String comm1 = "cd " + currDir;
          String comm2 = rvmPath+" -X:vm:raceDetSamplingRate="+sampRate+" -cp ../:./:./* ";
-         String comm3 = comm1 + "; " + comm2 + currFileName;
+         String comm3 = /*comm1 + "; " + */ comm2 + currFileName;
          
          //this is just a test line , comment it out later 
          textAreaDetRaceStat.setText(comm3);
@@ -235,7 +235,8 @@ public class rvmGui extends javax.swing.JFrame {
  
          Process p;
          try {
-            p = Runtime.getRuntime().exec(comm3);
+            File thisDir = jfc.getCurrentDirectory();
+            p = Runtime.getRuntime().exec(comm3,null,thisDir);
             p.waitFor();
             BufferedReader reader = 
                                new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -255,7 +256,7 @@ public class rvmGui extends javax.swing.JFrame {
          String s = null;
          try {
 
-            // run the Unix "ps -ef" command
+            // run the Unix  command
             // using the Runtime exec method:
             Process p = Runtime.getRuntime().exec(comm3);
 
