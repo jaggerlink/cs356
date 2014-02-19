@@ -101,7 +101,7 @@ public class rvmGui extends javax.swing.JFrame {
       jLabel1.setText("Sampling Rate:");
 
       jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-      jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.0d, 1.0d, 0.05d));
+      jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.5d, 1.0d, 0.05d));
       jSpinner1.setToolTipText("");
       jSpinner1.setName(""); // NOI18N
 
@@ -221,13 +221,19 @@ public class rvmGui extends javax.swing.JFrame {
          
          //appends the strings together to form one long command line
          //that is going to be executed in the terminal
+         String rvmPath = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm";
          String comm1 = "cd " + currDir;
-         String comm2 = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm -X:vm:raceDetSamplingRate="+sampRate+" -cp ../:./:./* ";
+         String comm2 = rvmPath+" -X:vm:raceDetSamplingRate="+sampRate+" -cp ../:./:./* ";
          String comm3 = comm1 + "; " + comm2 + currFileName;
          
          //this is just a test line , comment it out later 
          textAreaDetRaceStat.setText(comm3);
-
+         
+         
+         
+         ProcessBuilder pb = new ProcessBuilder();
+         
+         
          //code below is supposed to execute a command in the terminal during java runtime
          /*
          String s = null;
