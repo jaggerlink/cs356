@@ -35,6 +35,8 @@ public class rvmGui extends javax.swing.JFrame {
       textAreaRaceLog = new java.awt.TextArea();
       textAreaDetRaceStat = new java.awt.TextArea();
       jFileChooser1 = new javax.swing.JFileChooser();
+      jLabel1 = new javax.swing.JLabel();
+      jSpinner1 = new javax.swing.JSpinner();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("rvmGui");
@@ -95,6 +97,14 @@ public class rvmGui extends javax.swing.JFrame {
       jLabelDetRaceStat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
       jLabelDetRaceStat.setText("Detected Race Statistics");
 
+      jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+      jLabel1.setText("Sampling Rate:");
+
+      jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+      jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.0d, 1.0d, 0.05d));
+      jSpinner1.setToolTipText("");
+      jSpinner1.setName(""); // NOI18N
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
@@ -119,13 +129,17 @@ public class rvmGui extends javax.swing.JFrame {
                               .addComponent(jLabelRaceLog))
                            .addGap(446, 446, 446))
                         .addGroup(layout.createSequentialGroup()
-                           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                              .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addGroup(layout.createSequentialGroup()
-                                 .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                 .addComponent(fbText, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addGroup(layout.createSequentialGroup()
-                                 .addGap(9, 9, 9)
+                                 .addGap(8, 8, 8)
+                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                           .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                              .addComponent(fbText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                  .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                  .addGap(18, 18, 18)
                                  .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -133,7 +147,7 @@ public class rvmGui extends javax.swing.JFrame {
                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                               .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-               .addGroup(layout.createSequentialGroup()
+               .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                   .addGap(45, 45, 45)
                   .addComponent(jLabelSamplingRate)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -153,10 +167,16 @@ public class rvmGui extends javax.swing.JFrame {
                   .addComponent(fbText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                  .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGroup(layout.createSequentialGroup()
+                  .addGap(18, 18, 18)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabelDetRaceStat)
@@ -190,6 +210,7 @@ public class rvmGui extends javax.swing.JFrame {
    private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
       //splits the of the selected file 
       try {
+         double sampRate = (double)jSpinner1.getValue();
          String filePath = fbText.getText();
          String currDir = jfc.getCurrentDirectory().toString();
          File openedFile = new File(filePath);
@@ -201,7 +222,7 @@ public class rvmGui extends javax.swing.JFrame {
          //appends the strings together to form one long command line
          //that is going to be executed in the terminal
          String comm1 = "cd " + currDir;
-         String comm2 = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm -X:vm:raceDetSamplingRate=1.0 -cp ../:./:./* ";
+         String comm2 = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm -X:vm:raceDetSamplingRate="+sampRate+" -cp ../:./:./* ";
          String comm3 = comm1 + "; " + comm2 + currFileName;
          
          //this is just a test line , comment it out later 
@@ -294,10 +315,12 @@ public class rvmGui extends javax.swing.JFrame {
    private javax.swing.JButton jButtonExit;
    private javax.swing.JButton jButtonRun;
    private javax.swing.JFileChooser jFileChooser1;
+   private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabelDetRaceStat;
    private javax.swing.JLabel jLabelNumDet;
    private javax.swing.JLabel jLabelRaceLog;
    private javax.swing.JLabel jLabelSamplingRate;
+   private javax.swing.JSpinner jSpinner1;
    private java.awt.Label labelChooseFile;
    private java.awt.Label labelTitle;
    private java.awt.TextArea textAreaDetRaceStat;
