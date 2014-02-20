@@ -19,8 +19,8 @@ public class SocketServer implements Runnable {
 			Socket socket = listener.accept();
 			ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 			try {
-				String test = (String)input.readObject();
-				System.out.println(test);
+				PacerData test = (PacerData)input.readObject();
+				System.out.println(test.totalRaces);
 			} catch (ClassNotFoundException e) {
 				System.out.println("Invalid Input.");
 				e.printStackTrace();
