@@ -20,10 +20,14 @@ public final class Races {
   
   private static HashMapRVM<Race,Race> races;
   private static final SpinLock racesLock = new SpinLock();
+  public static PacerData socketData;
+  private static SocketClient socketOut;
   
   @Interruptible
   static final void boot() {
     races = new HashMapRVM<Race,Race>();
+    socketData = new PacerData();
+    socketOut = new SocketClient();
   }
   
   @UninterruptibleNoWarn
@@ -240,11 +244,15 @@ public final class Races {
     for (Race race : races.keys()) {
       int count = race.getCount();
       totalDynamic += count;
-      ps.println("RACE: " + race + " (count = " + count + ")");
-      ps.println();
+      //TODO
+      //ps.println("RACE: " + race + " (count = " + count + ")");
+      //ps.println();
+      race.storeData();
     }
-    ps.println("Races: " + races.size() + " distinct, " + totalDynamic + " dynamic");
-    ps.println();
+    //TODO
+    //ps.println("Races: " + races.size() + " distinct, " + totalDynamic + " dynamic");
+    //ps.println();
+    socketData.setTotalDynamicRaces(races.size(), totalDynamic);
   }
   
   static {
@@ -252,6 +260,7 @@ public final class Races {
       Callbacks.addExitMonitor(new Callbacks.ExitMonitor() {
         public void notifyExit(int value) {
           postReport(System.out);
+          new Thread(socketOut).start();
         }
       });
     }

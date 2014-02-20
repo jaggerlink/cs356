@@ -114,6 +114,15 @@ public final class Site {
     return method.getDeclaringClass().getDescriptor() + "." + method.getName() + ":" + lineNumber + " (" + bci + ") (" + (isRead ? "R" : "W") + (isStatic ? " static" : "") + " " + type + ")";
   }
   
+  public final void storeData(PacerData out, boolean current) {	//TODO
+	  if(!current) {
+		  Races.socketData.addPriorRace(method.getDeclaringClass().getDescriptor().toString(), method.getName().toString(), lineNumber, bci, isRead, isStatic, type.toString());
+	  }
+	  else {
+		  Races.socketData.addCurrentRace(method.getDeclaringClass().getDescriptor().toString(), method.getName().toString(), lineNumber, bci, isRead, isStatic, type.toString());
+	  }
+  }
+  
   public void vmWrite(boolean isCurrSite) {
     method.getDeclaringClass().getDescriptor().sysWrite();
     VM.write(".");

@@ -181,9 +181,11 @@ public final class Sampling {
   }
 
   private static void reportEffectiveRate(String prefix) {
-    float effectiveRate = (float)samplingIncrements / totalIncrements;
-    VM.sysWrite(prefix, effectiveRate);
-    VM.sysWriteln(" (", samplingIncrements, " / ", totalIncrements, ")");
+    //float effectiveRate = (float)samplingIncrements / totalIncrements;
+    //TODO
+    //VM.sysWrite(prefix, effectiveRate);
+    //VM.sysWriteln(" (", samplingIncrements, " / ", totalIncrements, ")");
+    Races.socketData.setIncrements(samplingIncrements, totalIncrements);
   }
 
   @Interruptible

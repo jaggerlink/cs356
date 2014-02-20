@@ -3,6 +3,7 @@ package org.jikesrvm.rd;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class SocketClient implements Runnable {
 	Socket socket;
@@ -26,7 +27,7 @@ public class SocketClient implements Runnable {
 	@Override
 	public void run() {
 		try {
-			output.writeObject(new String("Hi!"));
+			output.writeObject(PacerData.theData);
 		}
 		catch (IOException e) {
 			System.out.println("Failed to write to socket.");

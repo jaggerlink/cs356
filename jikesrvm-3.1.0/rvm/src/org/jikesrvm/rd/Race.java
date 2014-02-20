@@ -69,4 +69,11 @@ public final class Race {
     buf.append(currSite);
     return buf.toString();
   }
+  
+  public final void storeData() {	//TODO
+	  for (Site priorSite : priorSites) {
+		  priorSite.storeData(Races.socketData, false);
+		  currSite.storeData(Races.socketData, true);
+	  }
+  }
 }
