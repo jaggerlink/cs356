@@ -1,9 +1,15 @@
 package socketServer;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PacerData {
+public class PacerData implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3556846890663854204L;
+
 	public class RaceData {
 		String descriptor;
 		String methodName;
