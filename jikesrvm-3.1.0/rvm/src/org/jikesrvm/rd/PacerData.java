@@ -10,10 +10,14 @@ public class PacerData implements Serializable {
 	 */
 	private static final long serialVersionUID = -3556846890663854204L;
 
-	public class RaceData {
+	class RaceData implements Serializable {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -8091142242419345729L;
 		String descriptor;
 		String methodName;
-		int lineNumber;
+		public int lineNumber;
 		int bci;
 		boolean isRead;
 		boolean isStatic;
@@ -30,7 +34,7 @@ public class PacerData implements Serializable {
 		
 	}
 	
-	static PacerData theData;
+	//static PacerData theData;
 	ArrayList<RaceData> priorRaces;
 	ArrayList<RaceData> currentRaces;
 	int totalRaces;
@@ -39,49 +43,38 @@ public class PacerData implements Serializable {
 	long totalIncrements;
 	ArrayList<String> raceDet;
 	
-	private static void init() {
-		theData = new PacerData();
-		theData.priorRaces = new ArrayList<RaceData>();
-		theData.currentRaces = new ArrayList<RaceData>();
-		theData.raceDet = new ArrayList<String>();
+	public PacerData() {
+		//theData = new PacerData();
+		priorRaces = new ArrayList<RaceData>();
+		currentRaces = new ArrayList<RaceData>();
+		raceDet = new ArrayList<String>();
 	}
 	
 	
 	public void addPriorRace(String descriptor, String methodName, int lineNumber, int bci, boolean isRead, boolean isStatic, String type) {
-		if(theData == null) {
-			init();
-		}
-		theData.priorRaces.add(new RaceData(descriptor, methodName, lineNumber, bci, isRead, isStatic, type));
+		priorRaces.add(new RaceData(descriptor, methodName, lineNumber, bci, isRead, isStatic, type));
 	}
 	
 	public void addCurrentRace(String descriptor, String methodName, int lineNumber, int bci, boolean isRead, boolean isStatic, String type) {
-		if(theData == null) {
-			init();
-		}
-		theData.currentRaces.add(new RaceData(descriptor, methodName, lineNumber, bci, isRead, isStatic, type));
+		currentRaces.add(new RaceData(descriptor, methodName, lineNumber, bci, isRead, isStatic, type));
 	}
 	
 	public void setTotalDynamicRaces(int totalRaces, int totalDynamic) {
-		if(theData == null) {
-			init();
-		}
-		theData.totalRaces = totalRaces;
-		theData.totalDynamic = totalDynamic;
+		this.totalRaces = totalRaces;
+		this.totalDynamic = totalDynamic;
 	}
 	
 	public void setIncrements(long samplingIncrements, long totalIncrements) {
-		if(theData == null) {
-			init();
-		}
-		theData.samplingIncrements = samplingIncrements;
-		theData.totalIncrements = totalIncrements;
+		this.samplingIncrements = samplingIncrements;
+		this.totalIncrements = totalIncrements;
 	}
 	
-	public void addRaceDet(String raceDet) {
-		if(theData == null) {
-			init();
-		}
-		theData.raceDet.add(raceDet);
+	public void addRaceDet(String raceDetVal) {
+		raceDet.add(raceDetVal);
+	}
+	
+	public String getPriorRace(int index) {
+		return priorRaces.get(index).descriptor;
 	}
 	
 	
