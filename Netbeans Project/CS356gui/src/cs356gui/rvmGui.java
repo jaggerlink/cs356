@@ -56,6 +56,11 @@ public class rvmGui extends javax.swing.JFrame {
       labelChooseFile.setText("Choose File: ");
 
       jButtonCancel.setText("Cancel");
+      jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButtonCancelActionPerformed(evt);
+         }
+      });
 
       jButtonClear.setText("Clear");
       jButtonClear.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +172,6 @@ public class rvmGui extends javax.swing.JFrame {
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(fbText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                   .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +215,7 @@ public class rvmGui extends javax.swing.JFrame {
    private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
       //splits the of the selected file 
       try {
-         double sampRate = (double) jSpinner1.getValue();
+       //  double sampRate = (double) jSpinner1.getValue();
          String filePath = fbText.getText();
          String currDir = jfc.getCurrentDirectory().toString();
          File openedFile = new File(filePath);
@@ -224,7 +228,7 @@ public class rvmGui extends javax.swing.JFrame {
          //that is going to be executed in the terminal
          String rvmPath = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm";
          //String comm1 = "cd " + currDir;
-         String comm2 = rvmPath + " -X:vm:raceDetSamplingRate=" + sampRate + " -cp ../:./:./* ";
+         String comm2 = rvmPath + " -X:vm:raceDetSamplingRate=1.0 -cp ../:./:./* ";
          String comm3 = /*comm1 + "; " + */ comm2 + currFileName;
 
          //this is just a test line , comment it out later 
@@ -317,7 +321,15 @@ public class rvmGui extends javax.swing.JFrame {
    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
       //clears the text in file broswer
       fbText.setText("");
+      textAreaDetRaceStat.setText("");
+      textAreaNumDet.setText("");
+      textAreaRaceLog.setText("");
+      textAreaSamplingRate.setText("");
    }//GEN-LAST:event_jButtonClearActionPerformed
+
+   private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_jButtonCancelActionPerformed
 
    public static void main(String args[]) {
       try {
