@@ -9,15 +9,51 @@ public class DataInfo {
 	
 	//write effective sampling text file
 	public void writeES() {
+		try {
+			File file = new File("EfficientSampling.txt");
+			BufferedWriter output = new BufferedWriter(new FileWriter(file));
+			output.write(eSampling);
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	//write race detection text file
 	public void writeRD() {
+		try {
+			File file = new File("RaceDetected.txt");
+			BufferedWriter output = new BufferedWriter(new FileWriter(file));
+			for(int i = 0; i < raceDetect.size(); i++) {
+				output.write(raceDetect.get(i));
+			}
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	//write number of races text file
-	public void writeNM() {
+	public void writeNR() {
+		try {
+			File file = new File("NumberOfRaces.txt");
+			BufferedWriter output = new BufferedWriter(new FileWriter(file));
+			output.write(numRace);
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	//write RaceDet stats text file
 	public void writeRDS() {
+		try {
+			File file = new File("RaceDetStat.txt");
+			BufferedWriter output = new BufferedWriter(new FileWriter(file));
+			for(int i = 0; i < raceDetStat.size(); i++) {
+				output.write(raceDetStat.get(i));
+			}
+			output.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	//add the effective sampling rate to the string
@@ -35,5 +71,22 @@ public class DataInfo {
 	//add the RaceDet Stats to the arraylist
 	public void addRDS(String s) {
 		raceDetStat.add(s);
+	}
+	
+	public void writeFile(int i) {
+		switch(i) {
+			case 1:	// Effective Sampling
+					writeES();
+					break;
+			case 2: // Race Detection
+					writeRD();
+					break;
+			case 3: // Number of Races
+					writeNR();
+					break;
+			case 4: // RaceDet Stat
+					writeRDS();
+					break;
+		}
 	}
 }
