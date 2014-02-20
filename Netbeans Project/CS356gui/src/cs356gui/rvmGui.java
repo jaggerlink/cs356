@@ -5,6 +5,7 @@ package cs356gui;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import javax.swing.JFileChooser;
 
@@ -210,7 +211,7 @@ public class rvmGui extends javax.swing.JFrame {
    private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
       //splits the of the selected file 
       try {
-         double sampRate = (double)jSpinner1.getValue();
+         double sampRate = (double) jSpinner1.getValue();
          String filePath = fbText.getText();
          String currDir = jfc.getCurrentDirectory().toString();
          File openedFile = new File(filePath);
@@ -218,68 +219,80 @@ public class rvmGui extends javax.swing.JFrame {
          String[] currFileArray = currFile.split("\\.");
          String currFileName = currFileArray[0];
          // textAreaDetRaceStat.setText(currFileName + "\n" + currFile + "\n" + currDir);
-         
+
          //appends the strings together to form one long command line
          //that is going to be executed in the terminal
          String rvmPath = "/home/s/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm";
          //String comm1 = "cd " + currDir;
-         String comm2 = rvmPath+" -X:vm:raceDetSamplingRate="+sampRate+" -cp ../:./:./* ";
+         String comm2 = rvmPath + " -X:vm:raceDetSamplingRate=" + sampRate + " -cp ../:./:./* ";
          String comm3 = /*comm1 + "; " + */ comm2 + currFileName;
-         
+
          //this is just a test line , comment it out later 
          textAreaDetRaceStat.setText(comm3);
-         
-         
-         
-         StringBuffer output = new StringBuffer();
- 
-         Process p;
-         try {
-            File thisDir = jfc.getCurrentDirectory();
-            p = Runtime.getRuntime().exec(comm3,null,thisDir);
-            p.waitFor();
-            BufferedReader reader = 
-                               new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-                           String line = "";			
-            while ((line = reader.readLine())!= null) {
-               output.append(line + "\n");
-            }
-            textAreaDetRaceStat.setText(line);
-         } catch (Exception e) {
+         //String rvmPath = "/home/joshua/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/";
+		   //ProcessBuilder pb = new ProcessBuilder("gedit", "./src/PBTest.java", "+10");
+         //ProcessBuilder pb = new ProcessBuilder("xterm", "-e", "vi", "./src/PBTest.java", "+5");
+         ProcessBuilder pb = new ProcessBuilder("xterm", "-hold", "-e", rvmPath, currFileName);
+         File thisDir = jfc.getCurrentDirectory();
+         pb.directory(thisDir);
+         try {
+            pb.start();
+            //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
+         } catch (IOException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
          }
-         
-         
-         //code below is supposed to execute a command in the terminal during java runtime
+
          /*
-         String s = null;
-         try {
+          StringBuffer output = new StringBuffer();
+ 
+          Process p;
+          try {
+          File thisDir = jfc.getCurrentDirectory();
+          p = Runtime.getRuntime().exec(comm3,null,thisDir);
+          p.waitFor();
+          BufferedReader reader = 
+          new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-            // run the Unix  command
-            // using the Runtime exec method:
-            Process p = Runtime.getRuntime().exec(comm3);
+          String line = "";			
+          while ((line = reader.readLine())!= null) {
+          output.append(line + "\n");
+          }
+          textAreaDetRaceStat.setText(line);
+          } catch (Exception e) {
+          e.printStackTrace();
+          }
+         
+         
+          //code below is supposed to execute a command in the terminal during java runtime
+          /*
+          String s = null;
+          try {
 
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+          // run the Unix  command
+          // using the Runtime exec method:
+          Process p = Runtime.getRuntime().exec(comm3);
 
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+          BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-            // read the output from the command
-            System.out.println("Here is the standard output of the command:\n");
-            while ((s = stdInput.readLine()) != null) {
-               textAreaDetRaceStat.setText(textAreaDetRaceStat.getText() + "\n" + s);
-            }
+          BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 
-            // read any errors from the attempted command
-            System.out.println("Here is the standard error of the command (if any):\n");
-            while ((s = stdError.readLine()) != null) {
-               textAreaDetRaceStat.setText(textAreaDetRaceStat.getText() + "\n" + s);
-            }
+          // read the output from the command
+          System.out.println("Here is the standard output of the command:\n");
+          while ((s = stdInput.readLine()) != null) {
+          textAreaDetRaceStat.setText(textAreaDetRaceStat.getText() + "\n" + s);
+          }
 
-            //System.exit(0);
-         } catch (Exception e) {
-         }*/
+          // read any errors from the attempted command
+          System.out.println("Here is the standard error of the command (if any):\n");
+          while ((s = stdError.readLine()) != null) {
+          textAreaDetRaceStat.setText(textAreaDetRaceStat.getText() + "\n" + s);
+          }
 
+          //System.exit(0);
+          } catch (Exception e) {
+          }*/
       } catch (Exception e) {
       }
    }//GEN-LAST:event_jButtonRunActionPerformed
