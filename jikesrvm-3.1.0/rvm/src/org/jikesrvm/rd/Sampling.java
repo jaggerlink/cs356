@@ -12,9 +12,15 @@ import org.vmmagic.pragma.Interruptible;
 import org.vmmagic.pragma.Uninterruptible;
 import org.vmmagic.pragma.UninterruptibleNoWarn;
 
+//Simon Added
+import org.jikesrvm.DataInfo();
+
 /** RaceDet: the sampling aspects of sampling-based race detection */
 @Uninterruptible
 public final class Sampling {
+
+//Simon Added
+	DataInfo di = new DataInfo();
 
   /** Is sampling currently on? */
   @Entrypoint
@@ -180,15 +186,19 @@ public final class Sampling {
     return (int) (seed >>> (48 - bits));
   }
 
+  // Simon Editted
   private static void reportEffectiveRate(String prefix) {
     float effectiveRate = (float)samplingIncrements / totalIncrements;
     VM.sysWrite(prefix, effectiveRate);
     VM.sysWriteln(" (", samplingIncrements, " / ", totalIncrements, ")");
+	di.addES(prefix + effectiveRate + " (" + samplingIncrements + " / " + totalIncrememnts + ")");
   }
 
+  // Simon Editted
   @Interruptible
   static void postReport(PrintStream ps) {
     reportEffectiveRate("Effective sampling rate = ");
+	di.writeFile(1);
   }
   
   static {

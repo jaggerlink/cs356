@@ -1,4 +1,4 @@
-package org.jikesrvm.rd;
+	package org.jikesrvm.rd;
 
 import java.io.PrintStream;
 import java.util.HashSet;
@@ -15,11 +15,17 @@ import org.vmmagic.pragma.Uninterruptible;
 import org.vmmagic.pragma.UninterruptibleNoWarn;
 import org.vmmagic.unboxed.ObjectReference;
 
+//Simon Added
+import org.jikesrvm.DataInfo;
+
 @Uninterruptible
 public final class Races {
   
   private static HashMapRVM<Race,Race> races;
   private static final SpinLock racesLock = new SpinLock();
+  
+  //Simon Added
+  DataInfo di = new DataInfo();
   
   @Interruptible
   static final void boot() {
@@ -234,6 +240,7 @@ public final class Races {
     VM.write(" >");
   }
   
+  //Simon Edited
   @Interruptible
   static void postReport(PrintStream ps) {
     int totalDynamic = 0;
@@ -242,9 +249,13 @@ public final class Races {
       totalDynamic += count;
       ps.println("RACE: " + race + " (count = " + count + ")");
       ps.println();
+	  di.addRD("RACE: " + race + " (count = " + count + ")");
     }
     ps.println("Races: " + races.size() + " distinct, " + totalDynamic + " dynamic");
     ps.println();
+	di.addNR("Races: " + races.size() + " distinct, " + totalDynamic + " dynamic");
+	di.writeFile(2);
+	di.writeFile(3);
   }
   
   static {

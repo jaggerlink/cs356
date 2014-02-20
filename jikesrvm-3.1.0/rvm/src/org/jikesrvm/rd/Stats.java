@@ -11,12 +11,18 @@ import org.jikesrvm.util.LinkedListRVM;
 import org.vmmagic.pragma.Interruptible;
 import org.vmmagic.pragma.Uninterruptible;
 
+//Simon Added
+import org.jikesrvm.DataInfo;
+
 /** RaceDet: keeps track of statistics (for non-performance runs) */
 @Uninterruptible
 public final class Stats {
 
   static LinkedListRVM<Stat> stats = new LinkedListRVM<Stat>();
   static HashMapRVM<Object,Stat> objectStatMap;
+  
+  //added DataInfo class to implement the methods for us to grab outputs
+  DataInfo di = new DataInfo();
 
   @Interruptible
   static final void boot() {
@@ -44,8 +50,10 @@ public final class Stats {
       } while (!Magic.attemptLong(this, Entrypoints.rdStatValueField.getOffset(), oldValue, oldValue + 1));
     }
     
+	//Simon Edited
     final void report(PrintStream ps) {
       ps.println("RaceDet stat: " + name + " = " + this);
+	  di.addRDS("RaceDet stat: " + name + " = " + this);
     }
     
     public String toString() {
@@ -144,11 +152,13 @@ public final class Stats {
   public static final Stat compileTimeDefinitelyLocalScalars = new Stat("compileTimeDefinitelyLocalScalars");
   public static final Stat compileTimeMayEscapeScalars = new Stat("compileTimeMayEscapeScalars");
   
+  //Simon Editted
   @Interruptible
   static final void report(PrintStream ps) {
     for (Stat stat : stats) {
       stat.report(ps);
     }
+	di.writeFile(4);
   }
   
   @Interruptible
