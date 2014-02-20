@@ -1,38 +1,39 @@
 import java.util.ArrayList;
+import java.io.*;
 
 public class DataInfo {
-	private static ArrayList<String> effSampling = new ArrayList<>();
-	private static ArrayList<String> raceDetect = new ArrayList<>();
-	private static ArrayList<String> numRace = new ArrayList<>();
-	private static ArrayList<String> raceDetStat = new ArrayList<>();
+	private ArrayList<String> raceDetect = new ArrayList<>();
+	private ArrayList<String> raceDetStat = new ArrayList<>();
+	private String eSampling = null;	
+	private String numRace = null;
 	
-	public ArrayList<String> getEffSampling(){
-		return effSampling;
+	//write effective sampling text file
+	public void writeES() {
 	}
-	public ArrayList<String> getRaceDetect() {
-		return raceDetect;
+	//write race detection text file
+	public void writeRD() {
 	}
-	public ArrayList<String> getNumRace() {
-		return numRace;
+	//write number of races text file
+	public void writeNM() {
 	}
-	public ArrayList<String> getRaceDetStat() {
-		return raceDetStat;
+	//write RaceDet stats text file
+	public void writeRDS() {
 	}
 	
-	public void addEffSampling(String s) {
-		effSampling.add(s);
-		System.out.println(s);
+	//add the effective sampling rate to the string
+	public void addES(String s) {
+		eSampling = s;
 	}
-	public void addRaceDetect(String s) {
+	//add the race detected lines to the arraylist
+	public void addRD(String s) {
 		raceDetect.add(s);
-		System.out.println(s);
 	}
-	public void addNumRace(String s) {
-		numRace.add(s);
-		System.out.println(s);
+	//add the number of races detected to the string
+	public void addNM(String s) {
+		numRace = s;
 	}
-	public void addRaceDetStat(String s) {
+	//add the RaceDet Stats to the arraylist
+	public void addRDS(String s) {
 		raceDetStat.add(s);
-		System.out.println(s);
 	}
 }
