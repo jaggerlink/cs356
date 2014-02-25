@@ -10,23 +10,23 @@ TMPFILE4=/tmp/check-jni-methods.$$.4
 
 # Find all methods defined in the header files generated
 # from the java source files.
-grep -h '^JNIEXPORT .* Java_' /home/joshua/Documents/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/include/*.h | \
+grep -h '^JNIEXPORT .* Java_' /home/joshua/thirdtimesthecharm/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/include/*.h | \
         LC_ALL=C sed -e 's,.*JNICALL \(Java_[a-z_A-Z0-9]*\).*$,\1,' > $TMPFILE
-grep -h '^JNIEXPORT .* Java_' /home/joshua/Documents/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/include/*.h | \
+grep -h '^JNIEXPORT .* Java_' /home/joshua/thirdtimesthecharm/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/include/*.h | \
         LC_ALL=C sed -e 's,.*JNICALL \(Java_[a-z_A-Z0-9]*\).*$,\1,' >> $TMPFILE
 sort -u $TMPFILE >> $TMPFILE4
 mv $TMPFILE4 $TMPFILE
 
 # Find all methods in the JNI C source files.
-find /home/joshua/Documents/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/native/jni -name \*.c | \
+find /home/joshua/thirdtimesthecharm/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/native/jni -name \*.c | \
 	xargs grep -h '^Java_' | \
         LC_ALL=C sed -e 's,^\(Java_[a-z_A-Z0-9]*\).*$,\1,' > $TMPFILE2
 # Or in the the C++ files. (Note that cpp doesn't follow gnu conventions atm)
 # So we try to match both GNU style and some other style.
-find /home/joshua/Documents/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/native/jni -name \*.cpp | \
+find /home/joshua/thirdtimesthecharm/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/native/jni -name \*.cpp | \
 	xargs grep -h '^Java_' | \
         LC_ALL=C sed -e 's,^\(Java_[a-z_A-Z0-9]*\).*$,\1,' >> $TMPFILE2
-find /home/joshua/Documents/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/native/jni -name \*.cpp | \
+find /home/joshua/thirdtimesthecharm/pacer/jikesrvm-3.1.0/components/classpath/97.2p8/classpath/native/jni -name \*.cpp | \
 	xargs egrep -h '^(JNIEXPORT .* JNICALL )?Java_' | \
 	cut -f4 -d\  | \
         LC_ALL=C sed -e 's,^\JNIEXPORT .* JNICALL \(Java_[a-z_A-Z0-9]*\).*$,\1,' >> $TMPFILE2
