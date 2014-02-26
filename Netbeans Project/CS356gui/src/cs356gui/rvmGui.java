@@ -7,8 +7,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.File;
 import javax.swing.JFileChooser;
 
 public class rvmGui extends javax.swing.JFrame {
@@ -233,9 +233,9 @@ public class rvmGui extends javax.swing.JFrame {
          String comm2 = rvmPath + " -X:vm:raceDetSamplingRate=1.0 -cp ../:./:./* ";
          String comm3 = /*comm1 + "; " + */ comm2 + currFileName;
 
-         Path currentRelativePath = Paths.get("");
+         File currentRelativePath = new File("");
          //gets the current directory path which rvmGui.java is located in
-         String currGuiDir = currentRelativePath.toAbsolutePath().toString();
+         String currGuiDir = currentRelativePath.getAbsolutePath().toString();
          
          //this is just a test line , comment it out later 
          textAreaDetRaceStat.setText(comm3);
