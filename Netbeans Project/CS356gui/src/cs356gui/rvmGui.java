@@ -297,6 +297,12 @@ public class SocketServer implements Runnable {
             SocketServer server = new SocketServer();
             pb.start();
             PacerData newData = server.getData();
+			jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
+			jTextFieldRacesDet.setText(newData.getNR());
+			for(int i = 0; i < newData.getStatSize(); i++)
+				textAreaDetRaceStat.appendText(newData.getDRS(i));
+			for(int i = 0; i < newData.getRaceSize(); i++)
+				jListRaceLog.add(newData.getRace(i));
             //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
          } catch (IOException e) {
             // TODO Auto-generated catch block
