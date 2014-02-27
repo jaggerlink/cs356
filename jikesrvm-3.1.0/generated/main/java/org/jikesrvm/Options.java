@@ -20,8 +20,8 @@ import org.vmmagic.pragma.*;
  * <p>
  * Note: This file is mechanically generated from Options.template.
  * <p>
- * Note: Boolean options are defined in /home/joshua/thirdtimesthecharm/pacer/jikesrvm-3.1.0/rvm/src-generated/options/BooleanOptions.vm.dat
- *       All other options are defined in /home/joshua/thirdtimesthecharm/pacer/jikesrvm-3.1.0/rvm/src-generated/options/ValueOptions.vm.dat
+ * Note: Boolean options are defined in /home/joshua/git/cs356/jikesrvm-3.1.0/rvm/src-generated/options/BooleanOptions.vm.dat
+ *       All other options are defined in /home/joshua/git/cs356/jikesrvm-3.1.0/rvm/src-generated/options/ValueOptions.vm.dat
  *       (value, enumeration)
  * <p>
  * NOTE: This class does not support all of the types of

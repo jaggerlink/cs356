@@ -7,7 +7,7 @@ writing the lock field.
 
 Boot image space report:
 ------------------------------------------------------------------------------------------
-TOTAL                                                                568262       67334193
+TOTAL                                                                568485       67351792
 
 Compiled methods space report:
 ------------------------------------------------------------------------------------------
@@ -18,129 +18,129 @@ Compiled code space report
     Total size of code (bytes) =         198504
     Total size of mapping data (bytes) = 118410
   Optimizing Compiler
-    Number of compiled methods =         21548
-    Total size of code (bytes) =         15484496
-    Total size of mapping data (bytes) = 10941024
+    Number of compiled methods =         21558
+    Total size of code (bytes) =         15491120
+    Total size of mapping data (bytes) = 10945876
 ------------------------------------------------------------------------------------------
   Break down of code space usage by package (bytes):
 ------------------------------------------------------------------------------------------
 com.ibm.tuningfork.tracegen.chunk                        13361
-com.ibm.tuningfork.tracegen.types                         4174
-gnu.classpath                                             7204
-gnu.java.io                                               1147
+com.ibm.tuningfork.tracegen.types                         4175
+gnu.classpath                                             7208
+gnu.java.io                                               1151
 gnu.java.lang                                             1108
-gnu.java.lang.reflect                                     6581
+gnu.java.lang.reflect                                     6610
 gnu.java.net                                               171
-gnu.java.net.loader                                       1036
-gnu.java.net.protocol.file                               10920
-gnu.java.net.protocol.jar                                14456
-gnu.java.nio                                             50993
-gnu.java.nio.charset                                     64052
-gnu.java.security                                         8751
+gnu.java.net.loader                                       1040
+gnu.java.net.protocol.file                               10929
+gnu.java.net.protocol.jar                                14431
+gnu.java.nio                                             51003
+gnu.java.nio.charset                                     64097
+gnu.java.security                                         8748
 gnu.java.security.action                                   928
 gnu.java.security.provider                               11345
-gnu.java.util                                            12958
-gnu.java.util.regex                                      86066
-java.beans                                               10939
-java.io                                                 181279
-java.lang                                               413481
+gnu.java.util                                            12942
+gnu.java.util.regex                                      86095
+java.beans                                               10932
+java.io                                                 181216
+java.lang                                               413430
 java.lang.annotation                                      1978
-java.lang.ref                                             4661
-java.lang.reflect                                       141104
-java.net                                                 75897
-java.nio                                                 65230
+java.lang.ref                                             4677
+java.lang.reflect                                       141127
+java.net                                                 75890
+java.nio                                                 65243
 java.nio.channels                                          483
 java.nio.channels.spi                                      368
 java.nio.charset                                         30342
 java.nio.charset.spi                                       356
-java.security                                            49861
-java.util                                               548941
-java.util.jar                                            59806
-java.util.logging                                        47750
-java.util.regex                                          13558
-java.util.zip                                           117158
-org.jikesrvm                                            108427
+java.security                                            49842
+java.util                                               548860
+java.util.jar                                            59819
+java.util.logging                                        47771
+java.util.regex                                          13590
+java.util.zip                                           117206
+org.jikesrvm                                            108432
 org.jikesrvm.adaptive                                     8336
-org.jikesrvm.adaptive.controller                         84541
+org.jikesrvm.adaptive.controller                         84482
 org.jikesrvm.adaptive.database                               6
-org.jikesrvm.adaptive.database.callgraph                 32532
-org.jikesrvm.adaptive.database.methodsamples             16915
+org.jikesrvm.adaptive.database.callgraph                 32523
+org.jikesrvm.adaptive.database.methodsamples             16923
 org.jikesrvm.adaptive.measurements                        7732
-org.jikesrvm.adaptive.measurements.instrumentation       30685
+org.jikesrvm.adaptive.measurements.instrumentation       30649
 org.jikesrvm.adaptive.measurements.listeners              2542
-org.jikesrvm.adaptive.measurements.organizers            17084
+org.jikesrvm.adaptive.measurements.organizers            17108
 org.jikesrvm.adaptive.recompilation                      11735
-org.jikesrvm.adaptive.recompilation.instrumentation      69814
-org.jikesrvm.adaptive.util                              146756
-org.jikesrvm.classloader                                442837
-org.jikesrvm.compilers.baseline                         160696
-org.jikesrvm.compilers.baseline.ia32                    550494
-org.jikesrvm.compilers.common                            44052
+org.jikesrvm.adaptive.recompilation.instrumentation      69804
+org.jikesrvm.adaptive.util                              146776
+org.jikesrvm.classloader                                442859
+org.jikesrvm.compilers.baseline                         160708
+org.jikesrvm.compilers.baseline.ia32                    550531
+org.jikesrvm.compilers.common                            44144
 org.jikesrvm.compilers.common.assembler                   1657
-org.jikesrvm.compilers.common.assembler.ia32           1417351
-org.jikesrvm.compilers.opt                              463834
-org.jikesrvm.compilers.opt.bc2ir                        383125
-org.jikesrvm.compilers.opt.bc2ir.ia32                    17142
-org.jikesrvm.compilers.opt.controlflow                  375680
-org.jikesrvm.compilers.opt.depgraph                      39517
-org.jikesrvm.compilers.opt.dfsolver                      35066
-org.jikesrvm.compilers.opt.driver                        71121
+org.jikesrvm.compilers.common.assembler.ia32           1417372
+org.jikesrvm.compilers.opt                              463682
+org.jikesrvm.compilers.opt.bc2ir                        383082
+org.jikesrvm.compilers.opt.bc2ir.ia32                    17162
+org.jikesrvm.compilers.opt.controlflow                  375749
+org.jikesrvm.compilers.opt.depgraph                      39541
+org.jikesrvm.compilers.opt.dfsolver                      35054
+org.jikesrvm.compilers.opt.driver                        71136
 org.jikesrvm.compilers.opt.driver.ia32                    3953
-org.jikesrvm.compilers.opt.escape                        68813
+org.jikesrvm.compilers.opt.escape                        68841
 org.jikesrvm.compilers.opt.hir2lir                      269925
 org.jikesrvm.compilers.opt.inlining                     113185
-org.jikesrvm.compilers.opt.instrsched                    10434
-org.jikesrvm.compilers.opt.ir                           623288
-org.jikesrvm.compilers.opt.ir.ia32                       32317
-org.jikesrvm.compilers.opt.ir.operand                   119253
-org.jikesrvm.compilers.opt.ir.operand.ia32                6632
-org.jikesrvm.compilers.opt.lir2mir                       67217
-org.jikesrvm.compilers.opt.lir2mir.ia32                1289469
-org.jikesrvm.compilers.opt.liveness                      55273
+org.jikesrvm.compilers.opt.instrsched                    10419
+org.jikesrvm.compilers.opt.ir                           623249
+org.jikesrvm.compilers.opt.ir.ia32                       32333
+org.jikesrvm.compilers.opt.ir.operand                   119211
+org.jikesrvm.compilers.opt.ir.operand.ia32                6640
+org.jikesrvm.compilers.opt.lir2mir                       67214
+org.jikesrvm.compilers.opt.lir2mir.ia32                1289423
+org.jikesrvm.compilers.opt.liveness                      55289
 org.jikesrvm.compilers.opt.mir2mc                         2497
-org.jikesrvm.compilers.opt.mir2mc.ia32                  618872
-org.jikesrvm.compilers.opt.regalloc                     149968
-org.jikesrvm.compilers.opt.regalloc.ia32                110922
-org.jikesrvm.compilers.opt.runtimesupport                49321
+org.jikesrvm.compilers.opt.mir2mc.ia32                  618860
+org.jikesrvm.compilers.opt.regalloc                     150004
+org.jikesrvm.compilers.opt.regalloc.ia32                110937
+org.jikesrvm.compilers.opt.runtimesupport                49332
 org.jikesrvm.compilers.opt.runtimesupport.ia32             960
-org.jikesrvm.compilers.opt.specialization                13604
-org.jikesrvm.compilers.opt.ssa                          431240
-org.jikesrvm.compilers.opt.util                          80393
-org.jikesrvm.ia32                                        75652
-org.jikesrvm.jni                                        123287
-org.jikesrvm.jni.ia32                                    66908
-org.jikesrvm.mm.mminterface                            3034704
-org.jikesrvm.mm.mmtk                                     81196
+org.jikesrvm.compilers.opt.specialization                13632
+org.jikesrvm.compilers.opt.ssa                          431254
+org.jikesrvm.compilers.opt.util                          80435
+org.jikesrvm.ia32                                        75670
+org.jikesrvm.jni                                        123327
+org.jikesrvm.jni.ia32                                    66911
+org.jikesrvm.mm.mminterface                            3034624
+org.jikesrvm.mm.mmtk                                     81158
 org.jikesrvm.mm.mmtk.gcspy                                1662
-org.jikesrvm.objectmodel                                 24729
-org.jikesrvm.options                                      9575
-org.jikesrvm.osr                                         92469
+org.jikesrvm.objectmodel                                 24733
+org.jikesrvm.options                                      9584
+org.jikesrvm.osr                                         92504
 org.jikesrvm.osr.bytecodes                               20957
-org.jikesrvm.osr.ia32                                    27535
-org.jikesrvm.rd                                         110052
-org.jikesrvm.runtime                                    106786
-org.jikesrvm.scheduler                                  114654
-org.jikesrvm.tools.oth                                   41893
-org.jikesrvm.tuningfork                                  24800
-org.jikesrvm.util                                        48087
-org.mmtk.plan                                            60425
-org.mmtk.plan.generational                               68334
-org.mmtk.plan.generational.immix                         33447
-org.mmtk.policy                                          49541
-org.mmtk.policy.immix                                    27163
-org.mmtk.utility                                         35806
-org.mmtk.utility.alloc                                   21724
+org.jikesrvm.osr.ia32                                    27555
+org.jikesrvm.rd                                         116287
+org.jikesrvm.runtime                                    106769
+org.jikesrvm.scheduler                                  114685
+org.jikesrvm.tools.oth                                   41853
+org.jikesrvm.tuningfork                                  24826
+org.jikesrvm.util                                        48085
+org.mmtk.plan                                            60468
+org.mmtk.plan.generational                               68298
+org.mmtk.plan.generational.immix                         33456
+org.mmtk.policy                                          49575
+org.mmtk.policy.immix                                    27177
+org.mmtk.utility                                         35796
+org.mmtk.utility.alloc                                   21732
 org.mmtk.utility.deque                                   10923
 org.mmtk.utility.gcspy                                    4265
-org.mmtk.utility.gcspy.drivers                           23803
-org.mmtk.utility.heap                                    28411
-org.mmtk.utility.options                                 31150
-org.mmtk.utility.sanitychecker                           19308
-org.mmtk.utility.statistics                              63346
-org.mmtk.vm                                              10445
-org.mmtk.vm.gcspy                                         6547
+org.mmtk.utility.gcspy.drivers                           23799
+org.mmtk.utility.heap                                    28403
+org.mmtk.utility.options                                 31158
+org.mmtk.utility.sanitychecker                           19292
+org.mmtk.utility.statistics                              63342
+org.mmtk.vm                                              10437
+org.mmtk.vm.gcspy                                         6561
 org.vmmagic.pragma                                        1064
-org.vmmagic.unboxed                                       1384
+org.vmmagic.unboxed                                       1388
 org.vmutil.options                                       11988
 sun.misc                                                  1725
 ------------------------------------------------------------------------------------------
@@ -148,34 +148,34 @@ sun.misc                                                  1725
 Boot image space usage by types:
 Type                                                               Count             Bytes
 ------------------------------------------------------------------------------------------
-TOTAL                                                                568262       67334193
-[I                                                                    85422       18219800
-[Lorg.jikesrvm.ia32.Code;                                             22236       15686007
+TOTAL                                                                568485       67351792
+[I                                                                    85462       18224748
+[Lorg.jikesrvm.ia32.Code;                                             22246       15692633
 [J                                                                       40       12059552
-[B                                                                    59364        4830642
-org.jikesrvm.util.ImmutableEntryHashMapRVM$Bucket                     75817        2122876
-org.jikesrvm.classloader.NormalMethod                                 22239        1601208
-org.jikesrvm.compilers.opt.runtimesupport.OptCompiledMethod           23479        1502656
-org.jikesrvm.classloader.MethodReference                              28296        1245024
-[C                                                                    12464        1074376
-org.jikesrvm.util.ImmutableEntryHashSetRVM$Bucket                     43340        1040160
-org.jikesrvm.classloader.Atom                                         36342        1017576
-org.jikesrvm.util.HashMapRVM$Bucket                                   22832         639296
+[B                                                                    59387        4831523
+org.jikesrvm.util.ImmutableEntryHashMapRVM$Bucket                     75850        2123800
+org.jikesrvm.classloader.NormalMethod                                 22249        1601928
+org.jikesrvm.compilers.opt.runtimesupport.OptCompiledMethod           23489        1503296
+org.jikesrvm.classloader.MethodReference                              28306        1245464
+[C                                                                    12469        1074552
+org.jikesrvm.util.ImmutableEntryHashSetRVM$Bucket                     43350        1040400
+org.jikesrvm.classloader.Atom                                         36355        1017940
+org.jikesrvm.util.HashMapRVM$Bucket                                   22842         639576
 org.jikesrvm.classloader.RVMField                                      9132         547920
-org.jikesrvm.compilers.opt.escape.MethodSummary                       21350         512400
-[Ljava.lang.Object;                                                    4470         496960
-org.jikesrvm.compilers.opt.runtimesupport.OptMachineCodeMap           17260         483280
-[Lorg.jikesrvm.classloader.RVMMethod;                                  6120         472268
+org.jikesrvm.compilers.opt.escape.MethodSummary                       21360         512640
+[Ljava.lang.Object;                                                    4470         496996
+org.jikesrvm.compilers.opt.runtimesupport.OptMachineCodeMap           17270         483560
+[Lorg.jikesrvm.classloader.RVMMethod;                                  6121         472408
 org.jikesrvm.classloader.FieldReference                               10213         408520
-java.lang.String                                                      12413         397216
+java.lang.String                                                      12418         397376
 org.jikesrvm.classloader.RVMClass                                      2032         390144
-java.lang.Integer                                                     11983         239660
+java.lang.Integer                                                     12005         240100
 [Lorg.jikesrvm.util.AbstractHashMapRVM$AbstractBucket;                  556         205108
-[Lorg.jikesrvm.classloader.TypeReference;                              6131         191664
+[Lorg.jikesrvm.classloader.TypeReference;                              6132         191688
 [Lorg.jikesrvm.classloader.MemberReference;                              38         156408
 [Lorg.jikesrvm.classloader.Atom;                                         36         148176
 [Lorg.jikesrvm.classloader.RVMField;                                   2816         138972
-[[I                                                                       5         117644
+[[I                                                                       5         117684
 org.jikesrvm.classloader.RVMAnnotation$AnnotationMember                4125         115500
 [Lorg.jikesrvm.util.AbstractHashSetRVM$AbstractBucket;                  722         108080
 [Lorg.jikesrvm.ArchitectureSpecific$CodeArray;                          739         105296

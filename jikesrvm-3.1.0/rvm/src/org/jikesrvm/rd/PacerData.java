@@ -32,6 +32,9 @@ public class PacerData implements Serializable {
 			this.isStatic = isStatic;
 		}
 		
+		public String toString() {
+			return descriptor + " " + methodName + " " + lineNumber + " " + bci;
+		}
 	}
 	
 	//static PacerData theData;
@@ -50,6 +53,25 @@ public class PacerData implements Serializable {
 		raceDet = new ArrayList<String>();
 	}
 	
+	
+	public int getRaceSize() {
+		return priorRaces.size();
+	}
+	public int getStatSize() {
+		return raceDet.size();
+	}
+	public String getSR() {
+		return "Sampling Increment:  " + samplingIncrements + "; Total Increments:  " + totalIncrements;
+	}
+	public String getNR() {
+		return "RACES:  " + totalRaces + "distinct; " + totalDynamic + " dynamic";
+	}
+	public String getRace(int x) {
+		return priorRaces.get(x) + ", " + currentRaces.get(x);
+	}
+	public String getDRS(int x) {
+		return raceDet.get(x);
+	}
 	
 	public void addPriorRace(String descriptor, String methodName, int lineNumber, int bci, boolean isRead, boolean isStatic, String type) {
 		priorRaces.add(new RaceData(descriptor, methodName, lineNumber, bci, isRead, isStatic, type));
@@ -73,8 +95,20 @@ public class PacerData implements Serializable {
 		raceDet.add(raceDetVal);
 	}
 	
-	public String getPriorRace(int index) {
+	public String getPriorRaceDescriptor(int index) {
 		return priorRaces.get(index).descriptor;
+	}
+	
+	public int getPriorRaceLine(int index) {
+		return priorRaces.get(index).lineNumber;
+	}
+        
+        public String getCurrentRaceDescriptor(int index) {
+		return currentRaces.get(index).descriptor;
+	}
+	
+	public int getCurrentRaceLine(int index) {
+		return currentRaces.get(index).lineNumber;
 	}
 	
 	
