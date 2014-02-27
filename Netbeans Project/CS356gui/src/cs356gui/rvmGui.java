@@ -290,7 +290,7 @@ public class SocketServer implements Runnable {
          currGuiDir = currGuiDir.substring(0, currGuiDir.length() - 25);
  
          ProcessBuilder pb = new ProcessBuilder("xterm", "-e", currGuiDir + rvmPath, rvmCommand, currFileName);
-         System.out.println(currGuiDir + rvmCommand + " " + currFileName);
+         System.out.println(currGuiDir + rvmPath + " " + rvmCommand + " " + currFileName);
          File thisDir = jfc.getCurrentDirectory();
          pb.directory(thisDir);
          try {
@@ -299,8 +299,12 @@ public class SocketServer implements Runnable {
             PacerData newData = server.getData();
 			jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
 			jTextFieldRacesDet.setText(newData.getNR());
+                        System.out.println(newData.getStatSize());
 			for(int i = 0; i < newData.getStatSize(); i++)
+                        {
 				textAreaDetRaceStat.append(newData.getDRS(i));
+                                System.out.println(newData.getDRS(i));
+                        }
 			for(int i = 0; i < newData.getRaceSize(); i++)
 				jListRaceLog.add(newData.getRace(i));
             //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
