@@ -71,16 +71,17 @@ public class SocketServer implements Runnable {
       jButtonBrowse = new javax.swing.JButton();
       fbText = new java.awt.TextField();
       jLabelSamplingRate = new javax.swing.JLabel();
-      jLabelNumDet = new javax.swing.JLabel();
+      jLabelRacesDet = new javax.swing.JLabel();
       jLabelRaceLog = new javax.swing.JLabel();
       jLabelDetRaceStat = new javax.swing.JLabel();
-      textAreaSamplingRate = new java.awt.TextArea();
-      textAreaNumDet = new java.awt.TextArea();
-      textAreaRaceLog = new java.awt.TextArea();
       textAreaDetRaceStat = new java.awt.TextArea();
       jFileChooser1 = new javax.swing.JFileChooser();
       jLabel1 = new javax.swing.JLabel();
       jSpinner1 = new javax.swing.JSpinner();
+      jListRaceLog = new java.awt.List();
+      jTextFieldRacesDet = new java.awt.TextField();
+      jTextFieldSamplingRate = new java.awt.TextField();
+      jButtonGetSource = new javax.swing.JButton();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("rvmGui");
@@ -137,8 +138,8 @@ public class SocketServer implements Runnable {
       jLabelSamplingRate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
       jLabelSamplingRate.setText("Effective Sampling Rate:");
 
-      jLabelNumDet.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-      jLabelNumDet.setText("Number of Races Detected:");
+      jLabelRacesDet.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+      jLabelRacesDet.setText("Number of Races Detected:");
 
       jLabelRaceLog.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
       jLabelRaceLog.setText("Race Log:");
@@ -154,6 +155,9 @@ public class SocketServer implements Runnable {
       jSpinner1.setToolTipText("");
       jSpinner1.setName(""); // NOI18N
 
+      jButtonGetSource.setText("Get Source Line");
+      jButtonGetSource.setToolTipText("");
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
@@ -163,46 +167,51 @@ public class SocketServer implements Runnable {
             .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(354, 354, 354))
          .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGap(37, 37, 37)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(layout.createSequentialGroup()
-                  .addGap(37, 37, 37)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jLabelRacesDet)
+                           .addComponent(jLabelRaceLog))
+                        .addGap(632, 632, 632))
+                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                           .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addGroup(layout.createSequentialGroup()
+                              .addGap(8, 8, 8)
+                              .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                           .addComponent(fbText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                              .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                              .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addGap(18, 18, 18)
+                              .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                  .addGap(0, 0, Short.MAX_VALUE))
+               .addGroup(layout.createSequentialGroup()
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jListRaceLog, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                        .addComponent(jTextFieldRacesDet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
-                           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addComponent(jLabelNumDet)
-                              .addComponent(textAreaNumDet, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(textAreaSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(textAreaRaceLog, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(jLabelRaceLog))
-                           .addGap(446, 446, 446))
-                        .addGroup(layout.createSequentialGroup()
-                           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                              .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addGroup(layout.createSequentialGroup()
-                                 .addGap(8, 8, 8)
-                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                           .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                              .addComponent(fbText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                 .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                 .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                 .addGap(18, 18, 18)
-                                 .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                           .addGap(18, 18, 18)
-                           .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                              .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-               .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                  .addGap(45, 45, 45)
-                  .addComponent(jLabelSamplingRate)
+                           .addGap(8, 8, 8)
+                           .addComponent(jLabelSamplingRate))
+                        .addComponent(jTextFieldSamplingRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                     .addComponent(jButtonGetSource, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabelDetRaceStat)
-                     .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelDetRaceStat)
+                        .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                     .addComponent(jButtonExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addContainerGap(38, Short.MAX_VALUE))
       );
       layout.setVerticalGroup(
@@ -230,21 +239,24 @@ public class SocketServer implements Runnable {
                .addComponent(jLabelDetRaceStat)
                .addComponent(jLabelSamplingRate))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(layout.createSequentialGroup()
-                  .addComponent(textAreaSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(16, 16, 16)
-                  .addComponent(jLabelNumDet)
+                  .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(textAreaNumDet, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                     .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(jButtonGetSource, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+               .addGroup(layout.createSequentialGroup()
+                  .addComponent(jTextFieldSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(jLabelRacesDet)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(jTextFieldRacesDet, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(jLabelRaceLog)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(textAreaRaceLog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-               .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-            .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
+                  .addComponent(jListRaceLog, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(20, Short.MAX_VALUE))
       );
 
       pack();
@@ -315,9 +327,6 @@ public class SocketServer implements Runnable {
       //clears the text in file broswer
       fbText.setText("");
       textAreaDetRaceStat.setText("");
-      textAreaNumDet.setText("");
-      textAreaRaceLog.setText("");
-      textAreaSamplingRate.setText("");
    }//GEN-LAST:event_jButtonClearActionPerformed
 
    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
@@ -354,19 +363,20 @@ public class SocketServer implements Runnable {
    private javax.swing.JButton jButtonCancel;
    private javax.swing.JButton jButtonClear;
    private javax.swing.JButton jButtonExit;
+   private javax.swing.JButton jButtonGetSource;
    private javax.swing.JButton jButtonRun;
    private javax.swing.JFileChooser jFileChooser1;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabelDetRaceStat;
-   private javax.swing.JLabel jLabelNumDet;
    private javax.swing.JLabel jLabelRaceLog;
+   private javax.swing.JLabel jLabelRacesDet;
    private javax.swing.JLabel jLabelSamplingRate;
+   private java.awt.List jListRaceLog;
    private javax.swing.JSpinner jSpinner1;
+   private java.awt.TextField jTextFieldRacesDet;
+   private java.awt.TextField jTextFieldSamplingRate;
    private java.awt.Label labelChooseFile;
    private java.awt.Label labelTitle;
    private java.awt.TextArea textAreaDetRaceStat;
-   private java.awt.TextArea textAreaNumDet;
-   private java.awt.TextArea textAreaRaceLog;
-   private java.awt.TextArea textAreaSamplingRate;
    // End of variables declaration//GEN-END:variables
 }
