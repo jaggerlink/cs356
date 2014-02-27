@@ -270,7 +270,7 @@ public class SocketServer implements Runnable {
          //appends the strings together to form one long command line
          //that is going to be executed in the terminal
          String rvmPath = "jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm";
-         String rvmCommand = "-X:vm:raceDetSamplingRate=1"; // + Float.parseFloat(jSpinner1.getValue().toString());
+         String rvmCommand = "-X:vm:raceDetSamplingRate=" + Float.parseFloat(jSpinner1.getValue().toString());
 
          File currentRelativePath = new File("");
          //gets the current directory path which rvmGui.java is located in
