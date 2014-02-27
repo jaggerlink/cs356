@@ -70,17 +70,19 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jListRaceLog" alignment="0" pref="353" max="32767" attributes="0"/>
-                              <Component id="jTextFieldRacesDet" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                  <Component id="jLabelSamplingRate" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTextFieldSamplingRate" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jListRaceLog" alignment="0" pref="353" max="32767" attributes="0"/>
+                          <Component id="jTextFieldRacesDet" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <Component id="jLabelSamplingRate" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jButtonGetSource" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Component id="jTextFieldSamplingRate" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jButtonGetSource" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jButtonGetSource1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -135,6 +137,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonExit" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="jButtonGetSource" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="jButtonGetSource1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -149,7 +152,7 @@
                       <Component id="jListRaceLog" min="-2" pref="164" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -291,6 +294,15 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetSourceActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonGetSource1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Get Destination Line"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetSource1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
