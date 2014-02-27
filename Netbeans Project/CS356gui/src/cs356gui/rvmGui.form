@@ -289,6 +289,9 @@
         <Property name="text" type="java.lang.String" value="Get Source Line"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGetSourceActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

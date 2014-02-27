@@ -12,6 +12,9 @@ import java.net.Socket;
 import org.jikesrvm.rd.PacerData;
 
 public class rvmGui extends javax.swing.JFrame {
+    
+    PacerData newData;
+    String sourceDirectory;
 
    public rvmGui() {
       initComponents();
@@ -59,208 +62,213 @@ public class SocketServer implements Runnable {
 }
 
    @SuppressWarnings("unchecked")
-   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-   private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-      jButtonExit = new javax.swing.JButton();
-      labelTitle = new java.awt.Label();
-      labelChooseFile = new java.awt.Label();
-      jButtonCancel = new javax.swing.JButton();
-      jButtonClear = new javax.swing.JButton();
-      jButtonRun = new javax.swing.JButton();
-      jButtonBrowse = new javax.swing.JButton();
-      fbText = new java.awt.TextField();
-      jLabelSamplingRate = new javax.swing.JLabel();
-      jLabelRacesDet = new javax.swing.JLabel();
-      jLabelRaceLog = new javax.swing.JLabel();
-      jLabelDetRaceStat = new javax.swing.JLabel();
-      textAreaDetRaceStat = new java.awt.TextArea();
-      jFileChooser1 = new javax.swing.JFileChooser();
-      jLabel1 = new javax.swing.JLabel();
-      jSpinner1 = new javax.swing.JSpinner();
-      jListRaceLog = new java.awt.List();
-      jTextFieldRacesDet = new java.awt.TextField();
-      jTextFieldSamplingRate = new java.awt.TextField();
-      jButtonGetSource = new javax.swing.JButton();
+        jButtonExit = new javax.swing.JButton();
+        labelTitle = new java.awt.Label();
+        labelChooseFile = new java.awt.Label();
+        jButtonCancel = new javax.swing.JButton();
+        jButtonClear = new javax.swing.JButton();
+        jButtonRun = new javax.swing.JButton();
+        jButtonBrowse = new javax.swing.JButton();
+        fbText = new java.awt.TextField();
+        jLabelSamplingRate = new javax.swing.JLabel();
+        jLabelRacesDet = new javax.swing.JLabel();
+        jLabelRaceLog = new javax.swing.JLabel();
+        jLabelDetRaceStat = new javax.swing.JLabel();
+        textAreaDetRaceStat = new java.awt.TextArea();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jLabel1 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jListRaceLog = new java.awt.List();
+        jTextFieldRacesDet = new java.awt.TextField();
+        jTextFieldSamplingRate = new java.awt.TextField();
+        jButtonGetSource = new javax.swing.JButton();
 
-      setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-      setTitle("rvmGui");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("rvmGui");
 
-      jButtonExit.setText("Exit");
-      jButtonExit.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonExitActionPerformed(evt);
-         }
-      });
+        jButtonExit.setText("Exit");
+        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExitActionPerformed(evt);
+            }
+        });
 
-      labelTitle.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-      labelTitle.setText("Jikes Rvm");
+        labelTitle.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        labelTitle.setText("Jikes Rvm");
 
-      labelChooseFile.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-      labelChooseFile.setText("Choose File: ");
+        labelChooseFile.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        labelChooseFile.setText("Choose File: ");
 
-      jButtonCancel.setText("Cancel");
-      jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonCancelActionPerformed(evt);
-         }
-      });
+        jButtonCancel.setText("Cancel");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
 
-      jButtonClear.setText("Clear");
-      jButtonClear.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonClearActionPerformed(evt);
-         }
-      });
+        jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
 
-      jButtonRun.setText("Run");
-      jButtonRun.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonRunActionPerformed(evt);
-         }
-      });
+        jButtonRun.setText("Run");
+        jButtonRun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRunActionPerformed(evt);
+            }
+        });
 
-      jButtonBrowse.setText("Browse");
-      jButtonBrowse.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonBrowseActionPerformed(evt);
-         }
-      });
+        jButtonBrowse.setText("Browse");
+        jButtonBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBrowseActionPerformed(evt);
+            }
+        });
 
-      fbText.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-      fbText.setText("click \"Browse\" to choose a file");
-      fbText.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            fbTextActionPerformed(evt);
-         }
-      });
+        fbText.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        fbText.setText("click \"Browse\" to choose a file");
+        fbText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fbTextActionPerformed(evt);
+            }
+        });
 
-      jLabelSamplingRate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-      jLabelSamplingRate.setText("Effective Sampling Rate:");
+        jLabelSamplingRate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelSamplingRate.setText("Effective Sampling Rate:");
 
-      jLabelRacesDet.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-      jLabelRacesDet.setText("Number of Races Detected:");
+        jLabelRacesDet.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelRacesDet.setText("Number of Races Detected:");
 
-      jLabelRaceLog.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-      jLabelRaceLog.setText("Race Log:");
+        jLabelRaceLog.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelRaceLog.setText("Race Log:");
 
-      jLabelDetRaceStat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-      jLabelDetRaceStat.setText("Detected Race Statistics");
+        jLabelDetRaceStat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelDetRaceStat.setText("Detected Race Statistics");
 
-      jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-      jLabel1.setText("Sampling Rate:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Sampling Rate:");
 
-      jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-      jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.5d, 1.0d, 0.05d));
-      jSpinner1.setToolTipText("");
-      jSpinner1.setName(""); // NOI18N
+        jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.5d, 1.0d, 0.05d));
+        jSpinner1.setToolTipText("");
+        jSpinner1.setName(""); // NOI18N
 
-      jButtonGetSource.setText("Get Source Line");
-      jButtonGetSource.setToolTipText("");
+        jButtonGetSource.setText("Get Source Line");
+        jButtonGetSource.setToolTipText("");
+        jButtonGetSource.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGetSourceActionPerformed(evt);
+            }
+        });
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-      getContentPane().setLayout(layout);
-      layout.setHorizontalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(354, 354, 354))
-         .addGroup(layout.createSequentialGroup()
-            .addGap(37, 37, 37)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createSequentialGroup()
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                     .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(354, 354, 354))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelRacesDet)
+                                    .addComponent(jLabelRaceLog))
+                                .addGap(632, 632, 632))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fbText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addComponent(jLabelRacesDet)
-                           .addComponent(jLabelRaceLog))
-                        .addGap(632, 632, 632))
-                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                           .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addGroup(layout.createSequentialGroup()
-                              .addGap(8, 8, 8)
-                              .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jListRaceLog, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                                .addComponent(jTextFieldRacesDet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(8, 8, 8)
+                                    .addComponent(jLabelSamplingRate))
+                                .addComponent(jTextFieldSamplingRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonGetSource, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelDetRaceStat)
+                                .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                           .addComponent(fbText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                              .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                              .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addGap(18, 18, 18)
-                              .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(fbText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                  .addGap(0, 0, Short.MAX_VALUE))
-               .addGroup(layout.createSequentialGroup()
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jListRaceLog, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                        .addComponent(jTextFieldRacesDet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                           .addGap(8, 8, 8)
-                           .addComponent(jLabelSamplingRate))
-                        .addComponent(jTextFieldSamplingRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                     .addComponent(jButtonGetSource, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabelDetRaceStat)
-                        .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
-                     .addComponent(jButtonExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addContainerGap(38, Short.MAX_VALUE))
-      );
-      layout.setVerticalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(labelChooseFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addGroup(layout.createSequentialGroup()
-                  .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(fbText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addComponent(jButtonBrowse, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                  .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(jButtonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGroup(layout.createSequentialGroup()
-                  .addGap(18, 18, 18)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jLabelDetRaceStat)
-               .addComponent(jLabelSamplingRate))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createSequentialGroup()
-                  .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jButtonGetSource, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-               .addGroup(layout.createSequentialGroup()
-                  .addComponent(jTextFieldSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jLabelRacesDet)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jTextFieldRacesDet, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jLabelRaceLog)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jListRaceLog, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(20, Short.MAX_VALUE))
-      );
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDetRaceStat)
+                    .addComponent(jLabelSamplingRate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textAreaDetRaceStat, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonGetSource, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldSamplingRate, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRacesDet)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldRacesDet, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelRaceLog)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jListRaceLog, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
 
-      pack();
-   }// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
    //Closes the program when the Exit button is pushed
    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
@@ -293,10 +301,11 @@ public class SocketServer implements Runnable {
          System.out.println(currGuiDir + rvmPath + " " + rvmCommand + " " + currFileName);
          File thisDir = jfc.getCurrentDirectory();
          pb.directory(thisDir);
+         sourceDirectory = thisDir.toString();
          try {
             SocketServer server = new SocketServer();
             pb.start();
-            PacerData newData = server.getData();
+            newData = server.getData();
 			jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
 			jTextFieldRacesDet.setText(newData.getNR());
                         System.out.println(newData.getStatSize());
@@ -343,6 +352,19 @@ public class SocketServer implements Runnable {
       // TODO add your handling code here:
    }//GEN-LAST:event_jButtonCancelActionPerformed
 
+    private void jButtonGetSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetSourceActionPerformed
+        String testFix = newData.getPriorRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getPriorRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
+				ProcessBuilder pb = new ProcessBuilder("gedit", testFix, "+" + newData.getPriorRaceLine(jListRaceLog.getSelectedIndex()));
+				pb.directory(new File(sourceDirectory));
+				try {
+					pb.start();
+					//Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+                                }
+    }//GEN-LAST:event_jButtonGetSourceActionPerformed
+
    public static void main(String args[]) {
       try {
          for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -367,26 +389,26 @@ public class SocketServer implements Runnable {
       });
    }
 
-   // Variables declaration - do not modify//GEN-BEGIN:variables
-   private java.awt.TextField fbText;
-   private javax.swing.JButton jButtonBrowse;
-   private javax.swing.JButton jButtonCancel;
-   private javax.swing.JButton jButtonClear;
-   private javax.swing.JButton jButtonExit;
-   private javax.swing.JButton jButtonGetSource;
-   private javax.swing.JButton jButtonRun;
-   private javax.swing.JFileChooser jFileChooser1;
-   private javax.swing.JLabel jLabel1;
-   private javax.swing.JLabel jLabelDetRaceStat;
-   private javax.swing.JLabel jLabelRaceLog;
-   private javax.swing.JLabel jLabelRacesDet;
-   private javax.swing.JLabel jLabelSamplingRate;
-   private java.awt.List jListRaceLog;
-   private javax.swing.JSpinner jSpinner1;
-   private java.awt.TextField jTextFieldRacesDet;
-   private java.awt.TextField jTextFieldSamplingRate;
-   private java.awt.Label labelChooseFile;
-   private java.awt.Label labelTitle;
-   private java.awt.TextArea textAreaDetRaceStat;
-   // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.TextField fbText;
+    private javax.swing.JButton jButtonBrowse;
+    private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonClear;
+    private javax.swing.JButton jButtonExit;
+    private javax.swing.JButton jButtonGetSource;
+    private javax.swing.JButton jButtonRun;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelDetRaceStat;
+    private javax.swing.JLabel jLabelRaceLog;
+    private javax.swing.JLabel jLabelRacesDet;
+    private javax.swing.JLabel jLabelSamplingRate;
+    private java.awt.List jListRaceLog;
+    private javax.swing.JSpinner jSpinner1;
+    private java.awt.TextField jTextFieldRacesDet;
+    private java.awt.TextField jTextFieldSamplingRate;
+    private java.awt.Label labelChooseFile;
+    private java.awt.Label labelTitle;
+    private java.awt.TextArea textAreaDetRaceStat;
+    // End of variables declaration//GEN-END:variables
 }
