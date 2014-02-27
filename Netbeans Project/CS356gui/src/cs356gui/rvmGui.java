@@ -144,7 +144,7 @@ public class SocketServer implements Runnable {
         jLabel1.setText("Sampling Rate:");
 
         jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.5d, 1.0d, 0.05d));
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1.0d, 0.0d, 1.0d, 0.05d));
         jSpinner1.setToolTipText("");
         jSpinner1.setName(""); // NOI18N
 
