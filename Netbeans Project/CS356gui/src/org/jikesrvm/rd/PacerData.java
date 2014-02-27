@@ -102,6 +102,14 @@ public class PacerData implements Serializable {
 	public int getPriorRaceLine(int index) {
 		return priorRaces.get(index).lineNumber;
 	}
+        
+        public String getCurrentRaceDescriptor(int index) {
+		return currentRaces.get(index).descriptor;
+	}
+	
+	public int getCurrentRaceLine(int index) {
+		return currentRaces.get(index).lineNumber;
+	}
 	
 	
 	

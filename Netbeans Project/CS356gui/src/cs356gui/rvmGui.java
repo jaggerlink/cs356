@@ -363,6 +363,17 @@ public class SocketServer implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
                                 }
+                                
+        String testFix2 = newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
+				ProcessBuilder pb2 = new ProcessBuilder("gedit", testFix2, "+" + newData.getPriorRaceLine(jListRaceLog.getSelectedIndex()));
+				pb.directory(new File(sourceDirectory));
+				try {
+					pb2.start();
+					//Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+                                }
     }//GEN-LAST:event_jButtonGetSourceActionPerformed
 
    public static void main(String args[]) {
