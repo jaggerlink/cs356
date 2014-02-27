@@ -33,7 +33,7 @@ public class PacerData implements Serializable {
 		}
 		
 		public String toString() {
-			return descriptor + " " + methodName + " " + lineNumber + " " + bci;
+			return descriptor + " " + methodName + " Line #:" + lineNumber + " " + bci;
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class PacerData implements Serializable {
 		return "RACES:  " + totalRaces + "distinct; " + totalDynamic + " dynamic";
 	}
 	public String getRace(int x) {
-		return priorRaces.get(x) + ", " + currentRaces(x);
+		return priorRaces.get(x) + ", " + currentRaces.gets(x);
 	}
 	public String getDRS(int x) {
 		return raceDet.get(x);
