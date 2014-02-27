@@ -6,12 +6,57 @@ package cs356gui;
 import java.io.IOException;
 import java.io.File;
 import javax.swing.JFileChooser;
+import java.io.ObjectInputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import org.jikesrvm.rd.PacerData;
 
 public class rvmGui extends javax.swing.JFrame {
 
    public rvmGui() {
       initComponents();
    }
+   
+public class SocketServer implements Runnable {
+    
+    PacerData test;
+	@Override
+	public void run() {
+		try {
+			ServerSocket listener = new ServerSocket(8080);
+			Socket socket = listener.accept();
+			ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
+			try {
+				test = (PacerData)input.readObject();
+				System.out.println(test.getPriorRaceDescriptor(0) + " " + test.getPriorRaceLine(0));
+				String testFix = test.getPriorRaceDescriptor(0).substring(1, test.getPriorRaceDescriptor(0).length() - 1) + ".java";
+				ProcessBuilder pb = new ProcessBuilder("gedit", testFix, "+" + test.getPriorRaceLine(0));
+				pb.directory(new File("/home/joshua/Documents")); //TODO
+				try {
+					pb.start();
+					//Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				System.out.println("Invalid Input.");
+				e.printStackTrace();
+			}
+			
+			listener.close();
+		}
+		catch (IOException e) {
+			System.out.println("Something went wrong.");
+			e.printStackTrace();
+		}
+	}
+        public PacerData getData() {
+            run();
+            return test;
+        }
+
+}
 
    @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -225,78 +270,26 @@ public class rvmGui extends javax.swing.JFrame {
          //appends the strings together to form one long command line
          //that is going to be executed in the terminal
          String rvmPath = "jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm";
-         //String comm1 = "cd " + currDir;
-         String comm2 = rvmPath + " -X:vm:raceDetSamplingRate=" + jSpinner1.getValue();
+         String rvmCommand = "-X:vm:raceDetSamplingRate=1"; // + Float.parseFloat(jSpinner1.getValue().toString());
 
          File currentRelativePath = new File("");
          //gets the current directory path which rvmGui.java is located in
          String currGuiDir = currentRelativePath.getAbsolutePath();
          currGuiDir = currGuiDir.substring(0, currGuiDir.length() - 25);
  
-
-         //String rvmPath = "/home/joshua/pacer/jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/";
-		   //ProcessBuilder pb = new ProcessBuilder("gedit", "./src/PBTest.java", "+10");
-         //ProcessBuilder pb = new ProcessBuilder("xterm", "-e", "vi", "./src/PBTest.java", "+5");
-         ProcessBuilder pb = new ProcessBuilder("xterm", "-hold", "-e", currGuiDir + rvmPath, currFileName);
+         ProcessBuilder pb = new ProcessBuilder("xterm", "-e", currGuiDir + rvmPath, rvmCommand, currFileName);
+         System.out.println(currGuiDir + rvmCommand + " " + currFileName);
          File thisDir = jfc.getCurrentDirectory();
          pb.directory(thisDir);
          try {
+            SocketServer server = new SocketServer();
             pb.start();
+            PacerData newData = server.getData();
             //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
          } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
          }
-
-         /*
-          StringBuffer output = new StringBuffer();
- 
-          Process p;
-          try {
-          File thisDir = jfc.getCurrentDirectory();
-          p = Runtime.getRuntime().exec(comm3,null,thisDir);
-          p.waitFor();
-          BufferedReader reader = 
-          new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-          String line = "";			
-          while ((line = reader.readLine())!= null) {
-          output.append(line + "\n");
-          }
-          textAreaDetRaceStat.setText(line);
-          } catch (Exception e) {
-          e.printStackTrace();
-          }
-         
-         
-          //code below is supposed to execute a command in the terminal during java runtime
-          /*
-          String s = null;
-          try {
-
-          // run the Unix  command
-          // using the Runtime exec method:
-          Process p = Runtime.getRuntime().exec(comm3);
-
-          BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-          BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-          // read the output from the command
-          System.out.println("Here is the standard output of the command:\n");
-          while ((s = stdInput.readLine()) != null) {
-          textAreaDetRaceStat.setText(textAreaDetRaceStat.getText() + "\n" + s);
-          }
-
-          // read any errors from the attempted command
-          System.out.println("Here is the standard error of the command (if any):\n");
-          while ((s = stdError.readLine()) != null) {
-          textAreaDetRaceStat.setText(textAreaDetRaceStat.getText() + "\n" + s);
-          }
-
-          //System.exit(0);
-          } catch (Exception e) {
-          }*/
       } catch (Exception e) {
       }
    }//GEN-LAST:event_jButtonRunActionPerformed
