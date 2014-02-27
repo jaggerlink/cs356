@@ -46,8 +46,9 @@ public final class Stats {
     
     final void report(PrintStream ps) {
       String output = "RaceDet stat: " + name + " = " + this;
-      ps.println(output);
+      //ps.println(output);
       Races.socketData.addRaceDet(output);	//TODO
+      //ps.println(Races.socketData.getStatSize());
     }
     
     public String toString() {
