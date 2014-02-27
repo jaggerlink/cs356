@@ -31,17 +31,6 @@ public class SocketServer implements Runnable {
 			ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 			try {
 				test = (PacerData)input.readObject();
-				/*System.out.println(test.getPriorRaceDescriptor(0) + " " + test.getPriorRaceLine(0));
-				String testFix = test.getPriorRaceDescriptor(0).substring(1, test.getPriorRaceDescriptor(0).length() - 1) + ".java";
-				ProcessBuilder pb = new ProcessBuilder("gedit", testFix, "+" + test.getPriorRaceLine(0));
-				pb.directory(new File("/home/joshua/Documents")); //TODO
-				try {
-					pb.start();
-					//Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 			} catch (ClassNotFoundException e) {
 				System.out.println("Invalid Input.");
 				e.printStackTrace();
@@ -314,6 +303,7 @@ public class SocketServer implements Runnable {
          File thisDir = jfc.getCurrentDirectory();
          pb.directory(thisDir);
          sourceDirectory = thisDir.toString();
+         jButtonClearActionPerformed(null);
          try {
             SocketServer server = new SocketServer();
             pb.start();
@@ -356,8 +346,11 @@ public class SocketServer implements Runnable {
 
    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
       //clears the text in file broswer
-      fbText.setText("");
-      textAreaDetRaceStat.setText("");
+      //fbText.setText("");
+      textAreaDetRaceStat.setText(null);
+      jTextFieldSamplingRate.setText(null);
+      jTextFieldRacesDet.setText(null);
+      jListRaceLog.removeAll();
    }//GEN-LAST:event_jButtonClearActionPerformed
 
    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
@@ -379,7 +372,7 @@ public class SocketServer implements Runnable {
 
     private void jButtonGetSource1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetSource1ActionPerformed
         String testFix2 = newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
-				ProcessBuilder pb2 = new ProcessBuilder("gedit", testFix2, "+" + newData.getPriorRaceLine(jListRaceLog.getSelectedIndex()));
+				ProcessBuilder pb2 = new ProcessBuilder("gedit", testFix2, "+" + newData.getCurrentRaceLine(jListRaceLog.getSelectedIndex()));
 				pb2.directory(new File(sourceDirectory));
 				try {
 					pb2.start();
