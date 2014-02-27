@@ -28,7 +28,7 @@ public class SocketServer implements Runnable {
 			ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 			try {
 				test = (PacerData)input.readObject();
-				System.out.println(test.getPriorRaceDescriptor(0) + " " + test.getPriorRaceLine(0));
+				/*System.out.println(test.getPriorRaceDescriptor(0) + " " + test.getPriorRaceLine(0));
 				String testFix = test.getPriorRaceDescriptor(0).substring(1, test.getPriorRaceDescriptor(0).length() - 1) + ".java";
 				ProcessBuilder pb = new ProcessBuilder("gedit", testFix, "+" + test.getPriorRaceLine(0));
 				pb.directory(new File("/home/joshua/Documents")); //TODO
@@ -38,7 +38,7 @@ public class SocketServer implements Runnable {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 			} catch (ClassNotFoundException e) {
 				System.out.println("Invalid Input.");
 				e.printStackTrace();
