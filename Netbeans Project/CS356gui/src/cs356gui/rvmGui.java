@@ -329,7 +329,6 @@ public class rvmGui extends javax.swing.JFrame {
       fbText.setText("");
       textAreaDetRaceStat.setText("");
       textAreaNumDet.setText("");
-      textAreaRaceLog.setText("");
       textAreaSamplingRate.setText("");
    }//GEN-LAST:event_jButtonClearActionPerformed
 
