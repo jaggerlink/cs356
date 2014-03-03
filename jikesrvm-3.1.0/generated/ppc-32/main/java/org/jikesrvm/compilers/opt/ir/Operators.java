@@ -16,7 +16,7 @@
  * The input files are:
  *  Operators.template
  *  OperatorList.dat
- *  /home/joshua/thirdtimesthecharm/pacer/jikesrvm-3.1.0/generated/PPC-32bit_OperatorList.dat
+ *  /home/joshua/git/cs356/jikesrvm-3.1.0/generated/PPC-32bit_OperatorList.dat
  */
 
 package org.jikesrvm.compilers.opt.ir;
