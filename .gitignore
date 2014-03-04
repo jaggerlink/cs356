@@ -38,6 +38,7 @@ hs_err_pid*
 *.hex
 
 #custom
+*~
 /Netbeans Project/CS356gui/nbproject/private/
 /Netbeans Project/CS356gui/build/
 
