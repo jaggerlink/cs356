@@ -19,7 +19,8 @@ public class SocketClient {
 			socket = new Socket("localhost", 8080);
 			ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
 			output.writeObject(theData);
-			output.flush();
+			//output.flush();
+			output.close();
 		}
 		catch (IOException e) {
 			System.out.println("Failed to open or write socket.");

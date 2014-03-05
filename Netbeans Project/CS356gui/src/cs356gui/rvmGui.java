@@ -313,7 +313,7 @@ public class SocketServer implements Runnable {
                         System.out.println(newData.getStatSize());
 			for(int i = 0; i < newData.getStatSize(); i++)
                         {
-				textAreaDetRaceStat.append(newData.getDRS(i));
+				textAreaDetRaceStat.append(newData.getDRS(i) + "\n");
                                 System.out.println(newData.getDRS(i));
                         }
 			for(int i = 0; i < newData.getRaceSize(); i++)
