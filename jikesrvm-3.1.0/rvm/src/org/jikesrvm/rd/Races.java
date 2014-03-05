@@ -260,6 +260,7 @@ public final class Races {
       Callbacks.addExitMonitor(new Callbacks.ExitMonitor() {
         public void notifyExit(int value) {
           postReport(System.out);
+          Stats.report(System.out);
           socketOut.run(socketData);
         }
       });

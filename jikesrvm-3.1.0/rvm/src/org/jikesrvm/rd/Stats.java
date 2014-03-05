@@ -168,7 +168,7 @@ public final class Stats {
     if (RaceDet.stats()) {
       Callbacks.addExitMonitor(new Callbacks.ExitMonitor() {
         public void notifyExit(int value) {
-          report(System.out);
+          //report(System.out);
         }
       });
     }
