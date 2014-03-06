@@ -23,6 +23,11 @@ public class rvmGui extends javax.swing.JFrame {
 public class SocketServer implements Runnable {
     
     PacerData test;
+    rvmGui caller;
+    
+    public SocketServer(rvmGui caller) {
+        this.caller = caller;
+    }
 	@Override
 	public void run() {
 		try {
@@ -37,6 +42,7 @@ public class SocketServer implements Runnable {
 			}
 			
 			listener.close();
+                        caller.updateGui(test);
 		}
 		catch (IOException e) {
 			System.out.println("Something went wrong.");
@@ -305,19 +311,19 @@ public class SocketServer implements Runnable {
          sourceDirectory = thisDir.toString();
          jButtonClearActionPerformed(null);
          try {
-            SocketServer server = new SocketServer();
+            SocketServer server = new SocketServer(this);
             pb.start();
-            newData = server.getData();
-			jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
+            new Thread(server).start();
+            //newData = server.getData();
+			/*jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
 			jTextFieldRacesDet.setText(newData.getNR());
                         System.out.println(newData.getStatSize());
 			for(int i = 0; i < newData.getStatSize(); i++)
                         {
 				textAreaDetRaceStat.append(newData.getDRS(i) + "\n");
-                                System.out.println(newData.getDRS(i));
                         }
 			for(int i = 0; i < newData.getRaceSize(); i++)
-				jListRaceLog.add(newData.getRace(i));
+				jListRaceLog.add(newData.getRace(i));*/
             //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
          } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -327,6 +333,18 @@ public class SocketServer implements Runnable {
       }
    }//GEN-LAST:event_jButtonRunActionPerformed
 
+   public void updateGui(PacerData newData) {
+       jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
+       jTextFieldRacesDet.setText(newData.getNR());
+       System.out.println(newData.getStatSize());
+       for(int i = 0; i < newData.getStatSize(); i++)
+       {
+           textAreaDetRaceStat.append(newData.getDRS(i) + "\n");
+       }
+       for(int i = 0; i < newData.getRaceSize(); i++)
+           jListRaceLog.add(newData.getRace(i));
+   }
+   
    //initializing the fileBrowser  for later use
    JFileChooser jfc = new JFileChooser();
 
