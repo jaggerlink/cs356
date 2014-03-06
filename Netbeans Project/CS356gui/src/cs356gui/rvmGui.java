@@ -315,15 +315,6 @@ public class SocketServer implements Runnable {
             pb.start();
             new Thread(server).start();
             //newData = server.getData();
-			/*jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
-			jTextFieldRacesDet.setText(newData.getNR());
-                        System.out.println(newData.getStatSize());
-			for(int i = 0; i < newData.getStatSize(); i++)
-                        {
-				textAreaDetRaceStat.append(newData.getDRS(i) + "\n");
-                        }
-			for(int i = 0; i < newData.getRaceSize(); i++)
-				jListRaceLog.add(newData.getRace(i));*/
             //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
          } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -334,6 +325,7 @@ public class SocketServer implements Runnable {
    }//GEN-LAST:event_jButtonRunActionPerformed
 
    public void updateGui(PacerData newData) {
+       this.newData = newData;
        jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
        jTextFieldRacesDet.setText(newData.getNR());
        System.out.println(newData.getStatSize());
@@ -376,7 +368,8 @@ public class SocketServer implements Runnable {
    }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonGetSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetSourceActionPerformed
-        String testFix = newData.getPriorRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getPriorRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
+        if(jListRaceLog.getSelectedIndex() != -1) {
+            String testFix = newData.getPriorRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getPriorRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
 				ProcessBuilder pb = new ProcessBuilder("gedit", testFix, "+" + newData.getPriorRaceLine(jListRaceLog.getSelectedIndex()));
 				pb.directory(new File(sourceDirectory));
 				try {
@@ -386,10 +379,12 @@ public class SocketServer implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
                                 }
+        }
     }//GEN-LAST:event_jButtonGetSourceActionPerformed
 
     private void jButtonGetSource1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetSource1ActionPerformed
-        String testFix2 = newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
+        if(jListRaceLog.getSelectedIndex() != -1) {
+            String testFix2 = newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
 				ProcessBuilder pb2 = new ProcessBuilder("gedit", testFix2, "+" + newData.getCurrentRaceLine(jListRaceLog.getSelectedIndex()));
 				pb2.directory(new File(sourceDirectory));
 				try {
@@ -399,6 +394,7 @@ public class SocketServer implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
                                 }
+        }
     }//GEN-LAST:event_jButtonGetSource1ActionPerformed
 
    public static void main(String args[]) {
