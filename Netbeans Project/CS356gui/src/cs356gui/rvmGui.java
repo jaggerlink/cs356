@@ -15,6 +15,7 @@ public class rvmGui extends javax.swing.JFrame {
     
     PacerData newData;
     String sourceDirectory;
+    Process rvm;
 
    public rvmGui() {
       initComponents();
@@ -283,6 +284,7 @@ public class SocketServer implements Runnable {
    }//GEN-LAST:event_jButtonExitActionPerformed
 
    private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
+      jButtonRun.setEnabled(false);
       //splits the of the selected file 
       try {
        //  double sampRate = (double) jSpinner1.getValue();
@@ -312,7 +314,7 @@ public class SocketServer implements Runnable {
          jButtonClearActionPerformed(null);
          try {
             SocketServer server = new SocketServer(this);
-            pb.start();
+            rvm = pb.start();
             new Thread(server).start();
             //newData = server.getData();
             //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
@@ -334,7 +336,10 @@ public class SocketServer implements Runnable {
            textAreaDetRaceStat.append(newData.getDRS(i) + "\n");
        }
        for(int i = 0; i < newData.getRaceSize(); i++)
+       {
            jListRaceLog.add(newData.getRace(i));
+       }
+       jButtonRun.setEnabled(true);
    }
    
    //initializing the fileBrowser  for later use
@@ -364,7 +369,10 @@ public class SocketServer implements Runnable {
    }//GEN-LAST:event_jButtonClearActionPerformed
 
    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-      // TODO add your handling code here:
+      if(rvm != null) {
+          rvm.destroy();
+          jButtonRun.setEnabled(true);
+      }
    }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonGetSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetSourceActionPerformed
