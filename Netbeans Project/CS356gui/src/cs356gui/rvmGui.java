@@ -12,52 +12,52 @@ import java.net.Socket;
 import org.jikesrvm.rd.PacerData;
 
 public class rvmGui extends javax.swing.JFrame {
-    
+
     PacerData newData;
     String sourceDirectory;
     Process rvm;
 
-   public rvmGui() {
-      initComponents();
-   }
-   
-public class SocketServer implements Runnable {
-    
-    PacerData test;
-    rvmGui caller;
-    
-    public SocketServer(rvmGui caller) {
-        this.caller = caller;
+    public rvmGui() {
+        initComponents();
     }
-	@Override
-	public void run() {
-		try {
-			ServerSocket listener = new ServerSocket(8080);
-			Socket socket = listener.accept();
-			ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-			try {
-				test = (PacerData)input.readObject();
-			} catch (ClassNotFoundException e) {
-				System.out.println("Invalid Input.");
-				e.printStackTrace();
-			}
-			
-			listener.close();
-                        caller.updateGui(test);
-		}
-		catch (IOException e) {
-			System.out.println("Something went wrong.");
-			e.printStackTrace();
-		}
-	}
+
+    public class SocketServer implements Runnable {
+
+        PacerData test;
+        rvmGui caller;
+
+        public SocketServer(rvmGui caller) {
+            this.caller = caller;
+        }
+
+        @Override
+        public void run() {
+            try {
+                ServerSocket listener = new ServerSocket(8080);
+                Socket socket = listener.accept();
+                ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
+                try {
+                    test = (PacerData) input.readObject();
+                } catch (ClassNotFoundException e) {
+                    System.out.println("Invalid Input.");
+                    e.printStackTrace();
+                }
+
+                listener.close();
+                caller.updateGui(test);
+            } catch (IOException e) {
+                System.out.println("Something went wrong.");
+                e.printStackTrace();
+            }
+        }
+
         public PacerData getData() {
             run();
             return test;
         }
+    }
 
-}
-
-   @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -278,157 +278,153 @@ public class SocketServer implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   //Closes the program when the Exit button is pushed
+    //Closes the program when the Exit button is pushed
    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
-      System.exit(0);
+       System.exit(0);
    }//GEN-LAST:event_jButtonExitActionPerformed
 
    private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
-      jButtonRun.setEnabled(false);
-      //splits the of the selected file 
-      try {
-       //  double sampRate = (double) jSpinner1.getValue();
-         String filePath = fbText.getText();
-         String currDir = jfc.getCurrentDirectory().toString();
-         File openedFile = new File(filePath);
-         String currFile = jfc.getName(openedFile);
-         String[] currFileArray = currFile.split("\\.");
-         String currFileName = currFileArray[0];
-         // textAreaDetRaceStat.setText(currFileName + "\n" + currFile + "\n" + currDir);
+       jButtonRun.setEnabled(false);
+       //splits the of the selected file 
+       try {
+           //  double sampRate = (double) jSpinner1.getValue();
+           String filePath = fbText.getText();
+           String currDir = jfc.getCurrentDirectory().toString();
+           File openedFile = new File(filePath);
+           String currFile = jfc.getName(openedFile);
+           String[] currFileArray = currFile.split("\\.");
+           String currFileName = currFileArray[0];
+           // textAreaDetRaceStat.setText(currFileName + "\n" + currFile + "\n" + currDir);
 
-         //appends the strings together to form one long command line
-         //that is going to be executed in the terminal
-         String rvmPath = "jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm";
-         String rvmCommand = "-X:vm:raceDetSamplingRate=" + Float.parseFloat(jSpinner1.getValue().toString());
+           //appends the strings together to form one long command line
+           //that is going to be executed in the terminal
+           String rvmPath = "jikesrvm-3.1.0/dist/FastAdaptiveGenImmix_rdSamplingStats_ia32-linux/rvm";
+           String rvmCommand = "-X:vm:raceDetSamplingRate=" + Float.parseFloat(jSpinner1.getValue().toString());
 
-         File currentRelativePath = new File("");
-         //gets the current directory path which rvmGui.java is located in
-         String currGuiDir = currentRelativePath.getAbsolutePath();
-         currGuiDir = currGuiDir.substring(0, currGuiDir.length() - 25);
- 
-         ProcessBuilder pb = new ProcessBuilder("xterm", "-e", currGuiDir + rvmPath, rvmCommand, currFileName);
-         System.out.println(currGuiDir + rvmPath + " " + rvmCommand + " " + currFileName);
-         File thisDir = jfc.getCurrentDirectory();
-         pb.directory(thisDir);
-         sourceDirectory = thisDir.toString();
-         jButtonClearActionPerformed(null);
-         try {
-            SocketServer server = new SocketServer(this);
-            rvm = pb.start();
-            new Thread(server).start();
-            //newData = server.getData();
-            //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
-         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-         }
-      } catch (Exception e) {
-      }
+           File currentRelativePath = new File("");
+           //gets the current directory path which rvmGui.java is located in
+           String currGuiDir = currentRelativePath.getAbsolutePath();
+           currGuiDir = currGuiDir.substring(0, currGuiDir.length() - 25);
+
+           ProcessBuilder pb = new ProcessBuilder("xterm", "-e", currGuiDir + rvmPath, rvmCommand, currFileName);
+           System.out.println(currGuiDir + rvmPath + " " + rvmCommand + " " + currFileName);
+           File thisDir = jfc.getCurrentDirectory();
+           pb.directory(thisDir);
+           sourceDirectory = thisDir.toString();
+           jButtonClearActionPerformed(null);
+           try {
+               SocketServer server = new SocketServer(this);
+               rvm = pb.start();
+               new Thread(server).start();
+               //newData = server.getData();
+               //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
+           } catch (IOException e) {
+               // TODO Auto-generated catch block
+               e.printStackTrace();
+           }
+       } catch (Exception e) {
+       }
    }//GEN-LAST:event_jButtonRunActionPerformed
 
-   public void updateGui(PacerData newData) {
-       this.newData = newData;
-       jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
-       jTextFieldRacesDet.setText(newData.getNR());
-       System.out.println(newData.getStatSize());
-       for(int i = 0; i < newData.getStatSize(); i++)
-       {
-           textAreaDetRaceStat.append(newData.getDRS(i) + "\n");
-       }
-       for(int i = 0; i < newData.getRaceSize(); i++)
-       {
-           jListRaceLog.add(newData.getRace(i));
-       }
-       jButtonRun.setEnabled(true);
-   }
-   
-   //initializing the fileBrowser  for later use
-   JFileChooser jfc = new JFileChooser();
+    public void updateGui(PacerData newData) {
+        this.newData = newData;
+        jTextFieldSamplingRate.setText(newData.getSR()); //Insertion for gui display
+        jTextFieldRacesDet.setText(newData.getNR());
+        System.out.println(newData.getStatSize());
+        for (int i = 0; i < newData.getStatSize(); i++) {
+            textAreaDetRaceStat.append(newData.getDRS(i) + "\n");
+        }
+        for (int i = 0; i < newData.getRaceSize(); i++) {
+            jListRaceLog.add(newData.getRace(i));
+        }
+        jButtonRun.setEnabled(true);
+    }
+    //initializing the fileBrowser  for later use
+    JFileChooser jfc = new JFileChooser();
 
    private void jButtonBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseActionPerformed
-      //opens up the FileBrowser when "Browse" button is pressed
+       //opens up the FileBrowser when "Browse" button is pressed
 
-      int result = jfc.showDialog(null, "Select");
-      if (result == JFileChooser.APPROVE_OPTION) {
-         File f = jfc.getSelectedFile();
-         fbText.setText(f.getPath());
-      }
+       int result = jfc.showDialog(null, "Select");
+       if (result == JFileChooser.APPROVE_OPTION) {
+           File f = jfc.getSelectedFile();
+           fbText.setText(f.getPath());
+       }
    }//GEN-LAST:event_jButtonBrowseActionPerformed
 
    private void fbTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fbTextActionPerformed
-
    }//GEN-LAST:event_fbTextActionPerformed
 
    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
-      //clears the text in file broswer
-      //fbText.setText("");
-      textAreaDetRaceStat.setText(null);
-      jTextFieldSamplingRate.setText(null);
-      jTextFieldRacesDet.setText(null);
-      jListRaceLog.removeAll();
+       //clears the text in file broswer
+       //fbText.setText("");
+       textAreaDetRaceStat.setText(null);
+       jTextFieldSamplingRate.setText(null);
+       jTextFieldRacesDet.setText(null);
+       jListRaceLog.removeAll();
    }//GEN-LAST:event_jButtonClearActionPerformed
 
    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-      if(rvm != null) {
-          rvm.destroy();
-          jButtonRun.setEnabled(true);
-      }
+       if (rvm != null) {
+           rvm.destroy();
+           jButtonRun.setEnabled(true);
+       }
    }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonGetSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetSourceActionPerformed
-        if(jListRaceLog.getSelectedIndex() != -1) {
+        if (jListRaceLog.getSelectedIndex() != -1) {
             String testFix = newData.getPriorRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getPriorRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
-				ProcessBuilder pb = new ProcessBuilder("gedit", testFix, "+" + newData.getPriorRaceLine(jListRaceLog.getSelectedIndex()));
-				pb.directory(new File(sourceDirectory));
-				try {
-					pb.start();
-					//Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-                                }
+            ProcessBuilder pb = new ProcessBuilder("gedit", testFix, "+" + newData.getPriorRaceLine(jListRaceLog.getSelectedIndex()));
+            pb.directory(new File(sourceDirectory));
+            try {
+                pb.start();
+                //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_jButtonGetSourceActionPerformed
 
     private void jButtonGetSource1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetSource1ActionPerformed
-        if(jListRaceLog.getSelectedIndex() != -1) {
+        if (jListRaceLog.getSelectedIndex() != -1) {
             String testFix2 = newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).substring(1, newData.getCurrentRaceDescriptor(jListRaceLog.getSelectedIndex()).length() - 1) + ".java";
-				ProcessBuilder pb2 = new ProcessBuilder("gedit", testFix2, "+" + newData.getCurrentRaceLine(jListRaceLog.getSelectedIndex()));
-				pb2.directory(new File(sourceDirectory));
-				try {
-					pb2.start();
-					//Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-                                }
+            ProcessBuilder pb2 = new ProcessBuilder("gedit", testFix2, "+" + newData.getCurrentRaceLine(jListRaceLog.getSelectedIndex()));
+            pb2.directory(new File(sourceDirectory));
+            try {
+                pb2.start();
+                //Runtime.getRuntime().exec("xterm -e vi ./src/PBTest.java +5");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_jButtonGetSource1ActionPerformed
 
-   public static void main(String args[]) {
-      try {
-         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-               javax.swing.UIManager.setLookAndFeel(info.getClassName());
-               break;
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
-         }
-      } catch (ClassNotFoundException ex) {
-         java.util.logging.Logger.getLogger(rvmGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (InstantiationException ex) {
-         java.util.logging.Logger.getLogger(rvmGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (IllegalAccessException ex) {
-         java.util.logging.Logger.getLogger(rvmGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-         java.util.logging.Logger.getLogger(rvmGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-      }
-      java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-            new rvmGui().setVisible(true);
-         }
-      });
-   }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(rvmGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(rvmGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(rvmGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(rvmGui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        java.awt.EventQueue.invokeLater(new Runnable() {
 
+            public void run() {
+                new rvmGui().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.TextField fbText;
     private javax.swing.JButton jButtonBrowse;
