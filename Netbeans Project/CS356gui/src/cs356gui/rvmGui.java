@@ -325,8 +325,8 @@ public class rvmGui extends javax.swing.JFrame {
            String currGuiDir = currentRelativePath.getAbsolutePath();
            currGuiDir = currGuiDir.substring(0, currGuiDir.length() - 25);
 
-           ProcessBuilder pb = new ProcessBuilder("xterm", "-e", currGuiDir + rvmPath, rvmCommand, currFileName);
-           System.out.println(currGuiDir + rvmPath + " " + rvmCommand + " " + currFileName);
+           ProcessBuilder pb = new ProcessBuilder("xterm", "-e", currGuiDir + rvmPath, rvmCommand, currFileName, argsField.getText());
+           System.out.println(currGuiDir + rvmPath + " " + rvmCommand + " " + currFileName + " " + argsField.getText());
            File thisDir = jfc.getCurrentDirectory();
            pb.directory(thisDir);
            sourceDirectory = thisDir.toString();
