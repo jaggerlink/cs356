@@ -42,8 +42,8 @@ hs_err_pid*
 /Netbeans Project/CS356gui/nbproject/private/
 /Netbeans Project/CS356gui/build/
 
-/jikesrvm-3.1.0/dist
-/jikesrvm-3.1.0/target
-/jikesrvm-3.1.0/generated
-/jikesrvm-3.1.0/eclipse/bin
+/jikesrvm-3.1.0/dist/
+/jikesrvm-3.1.0/target/
+/jikesrvm-3.1.0/generated/
+/jikesrvm-3.1.0/eclipse/bin/
 
